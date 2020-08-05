@@ -414,7 +414,9 @@
                         <type>standalone</type>
                         <properties>
                             <cargo.glassfish.admin.port>4848</cargo.glassfish.admin.port>
+                            <cargo.glassfish.domain.name>sormas</cargo.glassfish.domain.name>
                         </properties>
+                        <home>../dev</home>
                     </configuration>
                     <deployables>
                         <deployable>
