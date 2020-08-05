@@ -140,6 +140,11 @@
                                 cargo.resource.parameters=;create=true
                             </cargo.resource.resource.sormasDataPool>
                         </properties>
+                        <configfiles>
+                            <configfile>
+                                <file>${basedir}/../sormas-base/setup/sormas.properties</file>
+                            </configfile>
+                        </configfiles>
                   </configuration>
                     <deployables>
                         <deployable>
