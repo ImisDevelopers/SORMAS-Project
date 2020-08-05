@@ -398,27 +398,6 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <useUberJar>true</useUberJar>
-                    <deployArtifacts>
-                        <artifactItem>
-                            <groupId>de.symeda.sormas</groupId>
-                            <artifactId>sormas-ear</artifactId>
-                            <version>1.46.0-SNAPSHOT</version>
-                            <type>ear</type>
-                        </artifactItem>
-                        <artifactItem>
-                            <groupId>de.symeda.sormas</groupId>
-                            <artifactId>sormas-ui</artifactId>
-                            <version>1.46.0-SNAPSHOT</version>
-                            <type>war</type>
-                        </artifactItem>
-                        <artifactItem>
-                            <groupId>de.symeda.sormas</groupId>
-                            <artifactId>sormas-rest</artifactId>
-                            <version>1.46.0-SNAPSHOT</version>
-                            <type>war</type>
-                        </artifactItem>
-                    </deployArtifacts>
                     <commandLineOptions>
                         <commandLineOption>
                             <key>--port</key>
@@ -427,6 +406,21 @@
                         <commandLineOption>
                             <key>--noCluster</key>
                         </commandLineOption>
+                        <option>
+                            <key>--deploy</key>
+                            <value>../sormas-ear/target/sormas-ear.ear</value>
+                        </option>
+                        <option>
+                            <key>--deploy</key>
+                            <value>../sormas-ui/target/sormas-ui.war</value>
+                        </option>
+                        <option>
+                            <key>--deploy</key>
+                            <value>../sormas-rest/target/sormas-rest.war</value>
+                        </option>
+                        <option>
+                            <value>--autobindhttp</value>
+                        </option>
                     </commandLineOptions>
                     <contextRoot>/</contextRoot>
                     <classpathArtifactItems>
@@ -436,7 +430,9 @@
                             <version>1.7.25</version>
                         </artifactItem>
                     </classpathArtifactItems>
+                    <useUberJar>true</useUberJar>
                 </configuration>
+
             </plugin>
 
             <!-- Code Coverage / Integration Tests aktivieren -->
