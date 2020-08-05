@@ -22,6 +22,7 @@
         <jackson.version>2.9.8</jackson.version>
         <swagger.version>2.1.2</swagger.version>
         <jetty.plugin.version>9.2.3.v20140905</jetty.plugin.version>
+        <payara.version>5.2020.3</payara.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
@@ -379,49 +380,42 @@
     </dependencies>
 
     <build>
+        <finalName>${project.artifactId}</finalName>
         <plugins>
             <plugin>
-                <groupId>fish.payara.maven.plugins</groupId>
-                <artifactId>payara-micro-maven-plugin</artifactId>
-                <version>1.1.0</version>
+                <groupId>org.codehaus.cargo</groupId>
+                <artifactId>cargo-maven2-plugin</artifactId>
+                <version>1.7.15</version>
                 <configuration>
-                    <commandLineOptions>
-                        <commandLineOption>
-                            <key>--port</key>
-                            <value>8080</value>
-                        </commandLineOption>
-                        <commandLineOption>
-                            <key>--noCluster</key>
-                        </commandLineOption>
-                        <option>
-                            <key>--deploy</key>
-                            <value>${project.basedir}/../sormas-ear/target/sormas-ear.ear</value>
-                        </option>
-                        <option>
-                            <key>--deploy</key>
-                            <value>../sormas-ui/target/sormas-ui.war</value>
-                        </option>
-                        <option>
-                            <key>--deploy</key>
-                            <value>../sormas-rest/target/sormas-rest.war</value>
-                        </option>
-                        <option>
-                            <value>--autobindhttp</value>
-                        </option>
-                    </commandLineOptions>
-
+                    <container>
+                        <containerId>payara</containerId>
+                        <artifactInstaller>
+                            <groupId>fish.payara.distributions</groupId>
+                            <artifactId>payara</artifactId>
+                            <version>${payara.version}</version>
+                        </artifactInstaller>
+                    </container>
+                    <configuration>
+                        <type>standalone</type>
+                        <properties>
+                            <cargo.glassfish.admin.port>4848</cargo.glassfish.admin.port>
+                        </properties>
+                    </configuration>
+                    <deployables>
+                        <deployable>
+                            <groupId>${project.groupId}</groupId>
+                            <artifactId>sormas-ear</artifactId>
+                            <type>ear</type>
+                            <location>../sormas-ear</location>
+                        </deployable>
+                    </deployables>
                 </configuration>
+                <!-- provides JSR88 client API to deploy on Payara Server -->
                 <dependencies>
-
                     <dependency>
                         <groupId>org.glassfish.main.deployment</groupId>
-                        <artifactId>deployment-javaee-full</artifactId>
-                        <version>5.1.0</version>
-                    </dependency>
-                    <dependency>
-                        <groupId>org.glassfish.main.appclient.server</groupId>
-                        <artifactId>appclient-connector</artifactId>
-                        <version>5.1.0</version>
+                        <artifactId>deployment-client</artifactId>
+                        <version>5.0</version>
                     </dependency>
                 </dependencies>
             </plugin>
