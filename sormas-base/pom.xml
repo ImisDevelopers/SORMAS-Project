@@ -420,7 +420,7 @@
                             <groupId>${project.groupId}</groupId>
                             <artifactId>sormas-ui</artifactId>
                             <type>war</type>
-                            <location>../sormas-ear/target/sormas-ui.war</location>
+                            <location>../sormas-ui/target/sormas-ui.war</location>
                         </deployable>
 
                     </deployables>
