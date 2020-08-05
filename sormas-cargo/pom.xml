@@ -144,6 +144,7 @@
                         <configfiles>
                             <configfile>
                                 <file>${basedir}/../sormas-base/setup/sormas.properties</file>
+                                <todir>sormas</todir>
                             </configfile>
                         </configfiles>
                   </configuration>
