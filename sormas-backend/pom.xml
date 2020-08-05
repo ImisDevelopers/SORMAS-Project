@@ -54,7 +54,7 @@
 			<groupId>com.nexmo</groupId>
 			<artifactId>client</artifactId>
 		</dependency>
-			
+
 		<dependency>
 			<groupId>org.jsoup</groupId>
 			<artifactId>jsoup</artifactId>
@@ -76,12 +76,12 @@
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-validator</artifactId>
 		</dependency>
-			
+
 		<dependency>
 		    <groupId>org.glassfish</groupId>
 		    <artifactId>javax.el</artifactId>
 		</dependency>
-			
+
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
@@ -124,6 +124,7 @@
     </dependencies>
 
 	<build>
+		<finalName>${project.artifactId}</finalName>
 	</build>
 
 </project>

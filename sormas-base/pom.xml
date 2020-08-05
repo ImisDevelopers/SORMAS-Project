@@ -376,27 +376,14 @@
             <groupId>org.mockito</groupId>
             <artifactId>mockito-core</artifactId>
         </dependency>
-
     </dependencies>
 
     <build>
         <plugins>
-
-
-
-
             <plugin>
                 <groupId>fish.payara.maven.plugins</groupId>
                 <artifactId>payara-micro-maven-plugin</artifactId>
                 <version>1.1.0</version>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>bundle</goal>
-                            <goal>start</goal>
-                        </goals>
-                    </execution>
-                </executions>
                 <configuration>
                     <commandLineOptions>
                         <commandLineOption>
@@ -408,7 +395,7 @@
                         </commandLineOption>
                         <option>
                             <key>--deploy</key>
-                            <value>../sormas-ear/target/sormas-ear.ear</value>
+                            <value>${project.basedir}/../sormas-ear/target/sormas-ear.ear</value>
                         </option>
                         <option>
                             <key>--deploy</key>
@@ -422,17 +409,21 @@
                             <value>--autobindhttp</value>
                         </option>
                     </commandLineOptions>
-                    <contextRoot>/</contextRoot>
-                    <classpathArtifactItems>
-                        <artifactItem>
-                            <groupId>org.slf4j</groupId>
-                            <artifactId>slf4j-api</artifactId>
-                            <version>1.7.25</version>
-                        </artifactItem>
-                    </classpathArtifactItems>
-                    <useUberJar>true</useUberJar>
-                </configuration>
 
+                </configuration>
+                <dependencies>
+
+                    <dependency>
+                        <groupId>org.glassfish.main.deployment</groupId>
+                        <artifactId>deployment-javaee-full</artifactId>
+                        <version>5.1.0</version>
+                    </dependency>
+                    <dependency>
+                        <groupId>org.glassfish.main.appclient.server</groupId>
+                        <artifactId>appclient-connector</artifactId>
+                        <version>5.1.0</version>
+                    </dependency>
+                </dependencies>
             </plugin>
 
             <!-- Code Coverage / Integration Tests aktivieren -->
