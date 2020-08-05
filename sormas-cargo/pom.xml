@@ -139,6 +139,7 @@
                                 cargo.resource.class=org.postgresql.ds.PGConnectionPoolDataSource|
                                 cargo.resource.parameters=;create=true
                             </cargo.resource.resource.sormasDataPool>
+                            <cargo.glassfish.domain.name>sormas</cargo.glassfish.domain.name>
                         </properties>
                         <configfiles>
                             <configfile>
