@@ -399,7 +399,6 @@
                 </executions>
                 <configuration>
                     <useUberJar>true</useUberJar>
-                    <daemon>true</daemon>
                     <deployArtifacts>
                         <artifactItem>
                             <groupId>de.symeda.sormas</groupId>
@@ -423,13 +422,20 @@
                     <commandLineOptions>
                         <commandLineOption>
                             <key>--port</key>
-                            <value>32154</value>
+                            <value>8080</value>
                         </commandLineOption>
                         <commandLineOption>
                             <key>--noCluster</key>
                         </commandLineOption>
                     </commandLineOptions>
                     <contextRoot>/</contextRoot>
+                    <classpathArtifactItems>
+                        <artifactItem>
+                            <groupId>org.slf4j</groupId>
+                            <artifactId>slf4j-api</artifactId>
+                            <version>1.7.25</version>
+                        </artifactItem>
+                    </classpathArtifactItems>
                 </configuration>
             </plugin>
 
