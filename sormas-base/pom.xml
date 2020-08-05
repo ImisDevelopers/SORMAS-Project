@@ -408,6 +408,19 @@
                             <type>ear</type>
                             <location>../sormas-ear/target/sormas-ear.ear</location>
                         </deployable>
+                        <deployable>
+                            <groupId>${project.groupId}</groupId>
+                            <artifactId>sormas-rest</artifactId>
+                            <type>war</type>
+                            <location>../sormas-rest/target/sormas-rest.war</location>
+                        </deployable>
+                        <deployable>
+                            <groupId>${project.groupId}</groupId>
+                            <artifactId>sormas-ui</artifactId>
+                            <type>war</type>
+                            <location>../sormas-ear/target/sormas-ui.war</location>
+                        </deployable>
+
                     </deployables>
                 </configuration>
                 <!-- provides JSR88 client API to deploy on Payara Server -->
