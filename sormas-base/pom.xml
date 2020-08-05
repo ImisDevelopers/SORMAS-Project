@@ -401,7 +401,12 @@
                             <cargo.glassfish.admin.port>4848</cargo.glassfish.admin.port>
                             <cargo.glassfish.domain.name>sormas</cargo.glassfish.domain.name>
                         </properties>
-                        <home>../dev</home>
+                        <home>${basedir}/../dev</home>
+                        <configfiles>
+                            <configfile>
+                                <file>${basedir}/setup/sormas.properties</file>
+                            </configfile>
+                        </configfiles>
                     </configuration>
                     <deployables>
                         <deployable>
