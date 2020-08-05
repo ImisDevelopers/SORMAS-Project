@@ -127,18 +127,24 @@
                                 cargo.resource.class=org.apache.derby.jdbc.ClientDataSource|
                                 cargo.resource.parameters=;create=true
                             </cargo.resource.resource.sormasAuditlogPool>
-                            <cargo.resource.resource.AuditlogPool>
-                                cargo.resource.name=jdbc/AuditlogPool|
-                                cargo.resource.type=javax.sql.DataSource|
-                                cargo.resource.class=org.apache.derby.jdbc.ClientDataSource|
-                                cargo.resource.parameters=;create=true
-                            </cargo.resource.resource.AuditlogPool>
                             <cargo.resource.resource.sormasDataPool>
                                 cargo.resource.name=jdbc/sormasDataPool|
                                 cargo.resource.type=javax.sql.ConnectionPoolDataSource|
                                 cargo.resource.class=org.postgresql.ds.PGConnectionPoolDataSource|
                                 cargo.resource.parameters=;create=true
                             </cargo.resource.resource.sormasDataPool>
+                            <cargo.resource.resource.AuditlogPool>
+                                cargo.resource.name=jdbc/AuditlogPool|
+                                cargo.resource.type=javax.sql.XADataSource|
+                                cargo.resource.class=org.postgresql.xa.PGXADataSource|
+                                cargo.resource.parameters=;create=true
+                            </cargo.resource.resource.AuditlogPool>
+                            <cargo.resource.resource.sormasProperties>
+                                cargo.resource.name=sormas/Properties|
+                                cargo.resource.type=java.util.Properties|
+                                cargo.resource.class=org.glassfish.resources.custom.factory.PropertiesFactory|
+                                cargo.resource.parameters=;org.glassfish.resources.custom.factory.PropertiesFactory.fileName=\${com.sun.aas.instanceRoot}/sormas.properties
+                            </cargo.resource.resource.sormasProperties>
                             <cargo.glassfish.domain.name>sormas</cargo.glassfish.domain.name>
                         </properties>
                         <configfiles>
