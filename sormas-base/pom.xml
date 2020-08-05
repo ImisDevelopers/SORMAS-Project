@@ -382,63 +382,7 @@
     <build>
         <finalName>${project.artifactId}</finalName>
         <plugins>
-            <plugin>
-                <groupId>org.codehaus.cargo</groupId>
-                <artifactId>cargo-maven2-plugin</artifactId>
-                <version>1.7.15</version>
-                <configuration>
-                    <container>
-                        <containerId>payara</containerId>
-                        <artifactInstaller>
-                            <groupId>fish.payara.distributions</groupId>
-                            <artifactId>payara</artifactId>
-                            <version>${payara.version}</version>
-                        </artifactInstaller>
-                    </container>
-                    <configuration>
-                        <type>standalone</type>
-                        <properties>
-                            <cargo.glassfish.admin.port>4848</cargo.glassfish.admin.port>
-                            <cargo.glassfish.domain.name>sormas</cargo.glassfish.domain.name>
-                        </properties>
-                        <home>${basedir}/../dev</home>
-                        <configfiles>
-                            <configfile>
-                                <file>${basedir}/setup/sormas.properties</file>
-                            </configfile>
-                        </configfiles>
-                    </configuration>
-                    <deployables>
-                        <deployable>
-                            <groupId>${project.groupId}</groupId>
-                            <artifactId>sormas-ear</artifactId>
-                            <type>ear</type>
-                            <location>../sormas-ear/target/sormas-ear.ear</location>
-                        </deployable>
-                        <deployable>
-                            <groupId>${project.groupId}</groupId>
-                            <artifactId>sormas-rest</artifactId>
-                            <type>war</type>
-                            <location>../sormas-rest/target/sormas-rest.war</location>
-                        </deployable>
-                        <deployable>
-                            <groupId>${project.groupId}</groupId>
-                            <artifactId>sormas-ui</artifactId>
-                            <type>war</type>
-                            <location>../sormas-ui/target/sormas-ui.war</location>
-                        </deployable>
 
-                    </deployables>
-                </configuration>
-                <!-- provides JSR88 client API to deploy on Payara Server -->
-                <dependencies>
-                    <dependency>
-                        <groupId>org.glassfish.main.deployment</groupId>
-                        <artifactId>deployment-client</artifactId>
-                        <version>5.0</version>
-                    </dependency>
-                </dependencies>
-            </plugin>
 
             <!-- Code Coverage / Integration Tests aktivieren -->
             <plugin>
