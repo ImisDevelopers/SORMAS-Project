@@ -89,13 +89,23 @@
         </dependency>
 
 
-
-
         <dependency>
             <groupId>de.symeda.sormas</groupId>
             <artifactId>sormas-ear</artifactId>
             <version>${project.version}</version>
             <type>ear</type>
+        </dependency>
+        <dependency>
+            <groupId>de.symeda.sormas</groupId>
+            <artifactId>sormas-ui</artifactId>
+            <version>${project.version}</version>
+            <type>war</type>
+        </dependency>
+        <dependency>
+            <groupId>de.symeda.sormas</groupId>
+            <artifactId>sormas-rest</artifactId>
+            <version>${project.version}</version>
+            <type>war</type>
         </dependency>
 
     </dependencies>
@@ -180,53 +190,35 @@
                         <type>standalone</type>
                         <properties>
                             <!-- <cargo.slf4j.version>${slf4j.version}</cargo.slf4j.version> -->
-                            <cargo.resource.resource.DerbyPool>
-                                cargo.resource.name=DerbyPool|
-                                cargo.resource.type=javax.sql.DataSource|
-                                cargo.resource.class=org.apache.derby.jdbc.ClientDataSource|
-                                cargo.resource.parameters=;create=true
-                            </cargo.resource.resource.DerbyPool>
-                            <cargo.resource.resource.sormasAuditlogPool>
-                                cargo.resource.name=sormasAuditlogPool|
-                                cargo.resource.type=javax.sql.DataSource|
-                                cargo.resource.class=org.apache.derby.jdbc.ClientDataSource|
-                                cargo.resource.parameters=;create=true
-                            </cargo.resource.resource.sormasAuditlogPool>
-
-
-                            <cargo.datasource.datasource.sormasDataPool>
-                                cargo.resource.name=sormasDataPool
-                                cargo.datasource.type=javax.sql.ConnectionPoolDataSource
-                                cargo.datasource.driver=org.postgresql.ds.PGConnectionPoolDataSource|
-                                cargo.datasource.jndi=jdbc/sormasDataPool|
-                                cargo.datasource.username=postgres|
-                                cargo.datasource.password=password
-                                cargo.datasource.url=
-                            </cargo.datasource.datasource.sormasDataPool>
-
-
-                            <cargo.resource.resource.sormasProperties>
-                                cargo.resource.name=sormas/Properties|
-                                cargo.resource.type=java.util.Properties|
-                                cargo.resource.class=org.glassfish.resources.custom.factory.PropertiesFactory|
-                                cargo.resource.parameters=;org.glassfish.resources.custom.factory.PropertiesFactory.fileName=\${com.sun.aas.instanceRoot}/sormas.properties
-                            </cargo.resource.resource.sormasProperties>
                             <cargo.glassfish.domain.name>sormas</cargo.glassfish.domain.name>
+                            <cargo.glassfish.admin.port>4848</cargo.glassfish.admin.port>
                         </properties>
                         <configfiles>
                             <configfile>
                                 <file>${basedir}/../sormas-base/setup/sormas.properties</file>
                                 <todir>sormas</todir>
                             </configfile>
+                            <configfile>
+                                <file>${basedir}/domain.xml</file>
+                                <todir>sormas/config/</todir>
+                            </configfile>
                         </configfiles>
+                        <files>
+                            <file>
+                                <file>${basedir}/../sormas-ear/target/sormas-ear.ear</file>
+                                <todir>sormas/applications/sormas-ear</todir>
+                            </file>
+                            <file>
+                                <file>${basedir}/../sormas-rest/target/sormas-rest.war</file>
+                                <todir>sormas/applications/sormas-rest</todir>
+                            </file>
+                            <file>
+                                <file>${basedir}/../sormas-ui/target/sormas-ui.war</file>
+                                <todir>sormas/applications/sormas-ui</todir>
+                            </file>
+
+                        </files>
                     </configuration>
-                    <deployables>
-                        <deployable>
-                            <groupId>de.symeda.sormas</groupId>
-                            <artifactId>sormas-ear</artifactId>
-                            <type>ear</type>
-                        </deployable>
-                    </deployables>
                 </configuration>
             </plugin>
         </plugins>
