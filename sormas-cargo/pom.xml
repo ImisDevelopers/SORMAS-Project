@@ -201,6 +201,7 @@
                                 cargo.datasource.jndi=jdbc/sormasDataPool|
                                 cargo.datasource.username=postgres|
                                 cargo.datasource.password=password
+                                cargo.datasource.url=
                             </cargo.datasource.datasource.sormasDataPool>
 
 
