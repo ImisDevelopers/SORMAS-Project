@@ -1,4 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>de.symeda.sormas</groupId>
@@ -54,6 +55,41 @@
             <groupId>org.jsoup</groupId>
             <artifactId>jsoup</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+        </dependency>
+
+
+        <!--FIXME this is super strange. This seem to be all related hibernate dependencies-->
+        <dependency>
+            <groupId>net.bytebuddy</groupId>
+            <artifactId>byte-buddy-dep</artifactId>
+            <version>1.10.14</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate.common</groupId>
+            <artifactId>hibernate-commons-annotations</artifactId>
+            <version>5.1.0.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>dom4j</groupId>
+            <artifactId>dom4j</artifactId>
+            <version>1.6.1</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss</groupId>
+            <artifactId>jandex</artifactId>
+            <version>2.2.1.Final</version>
+        </dependency>
+        <dependency>
+            <groupId>org.antlr</groupId>
+            <artifactId>antlr4</artifactId>
+            <version>4.8-1</version>
+        </dependency>
+
+
+
 
         <dependency>
             <groupId>de.symeda.sormas</groupId>
@@ -61,6 +97,7 @@
             <version>${project.version}</version>
             <type>ear</type>
         </dependency>
+
     </dependencies>
 
     <build>
@@ -84,7 +121,7 @@
                             <dependency>
                                 <groupId>org.slf4j</groupId>
                                 <artifactId>slf4j-api</artifactId>
-                           </dependency>
+                            </dependency>
                             <dependency>
                                 <groupId>org.slf4j</groupId>
                                 <artifactId>jcl-over-slf4j</artifactId>
@@ -104,11 +141,39 @@
                             <dependency>
                                 <groupId>com.vaadin</groupId>
                                 <artifactId>vaadin-themes</artifactId>
-                           </dependency>
+                            </dependency>
                             <dependency>
                                 <groupId>org.jsoup</groupId>
                                 <artifactId>jsoup</artifactId>
                             </dependency>
+
+                            <!--FIXME-->
+                            <dependency>
+                                <groupId>net.bytebuddy</groupId>
+                                <artifactId>byte-buddy-dep</artifactId>
+                            </dependency>
+                            <dependency>
+                                <groupId>org.hibernate</groupId>
+                                <artifactId>hibernate-core</artifactId>
+                            </dependency>
+                            <dependency>
+                                <groupId>org.hibernate.common</groupId>
+                                <artifactId>hibernate-commons-annotations</artifactId>
+                            </dependency>
+                            <dependency>
+                                <groupId>dom4j</groupId>
+                                <artifactId>dom4j</artifactId>
+                            </dependency>
+                            <dependency>
+                                <groupId>org.jboss</groupId>
+                                <artifactId>jandex</artifactId>
+                            </dependency>
+                            <dependency>
+                                <groupId>org.antlr</groupId>
+                                <artifactId>antlr4</artifactId>
+                            </dependency>
+
+
                         </dependencies>
                     </container>
                     <configuration>
@@ -127,18 +192,18 @@
                                 cargo.resource.class=org.apache.derby.jdbc.ClientDataSource|
                                 cargo.resource.parameters=;create=true
                             </cargo.resource.resource.sormasAuditlogPool>
-                            <cargo.resource.resource.sormasDataPool>
-                                cargo.resource.name=jdbc/sormasDataPool|
-                                cargo.resource.type=javax.sql.ConnectionPoolDataSource|
-                                cargo.resource.class=org.postgresql.ds.PGConnectionPoolDataSource|
-                                cargo.resource.parameters=;create=true
-                            </cargo.resource.resource.sormasDataPool>
-                            <cargo.resource.resource.AuditlogPool>
-                                cargo.resource.name=jdbc/AuditlogPool|
-                                cargo.resource.type=javax.sql.XADataSource|
-                                cargo.resource.class=org.postgresql.xa.PGXADataSource|
-                                cargo.resource.parameters=;create=true
-                            </cargo.resource.resource.AuditlogPool>
+
+
+                            <cargo.datasource.datasource.sormasDataPool>
+                                cargo.resource.name=sormasDataPool
+                                cargo.datasource.type=javax.sql.ConnectionPoolDataSource
+                                cargo.datasource.driver=org.postgresql.ds.PGConnectionPoolDataSource|
+                                cargo.datasource.jndi=jdbc/sormasDataPool|
+                                cargo.datasource.username=postgres|
+                                cargo.datasource.password=password
+                            </cargo.datasource.datasource.sormasDataPool>
+
+
                             <cargo.resource.resource.sormasProperties>
                                 cargo.resource.name=sormas/Properties|
                                 cargo.resource.type=java.util.Properties|
@@ -153,7 +218,7 @@
                                 <todir>sormas</todir>
                             </configfile>
                         </configfiles>
-                  </configuration>
+                    </configuration>
                     <deployables>
                         <deployable>
                             <groupId>de.symeda.sormas</groupId>
