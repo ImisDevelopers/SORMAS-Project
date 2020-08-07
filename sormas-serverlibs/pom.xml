@@ -3,7 +3,7 @@
 
     <artifactId>sormas-serverlibs</artifactId>
     <description>Lists the jars that need to be deployed on the server (for example, in /lib) are set to provided in the projects. This is usually to jars that are not OSGI-compliant.</description>
-    <packaging>pom</packaging>
+    <packaging>jar</packaging>
 
     <parent>
         <artifactId>sormas-base</artifactId>
@@ -86,10 +86,10 @@
             </plugin>
             <plugin>
                 <artifactId>maven-assembly-plugin</artifactId>
-                <version>3.3.0</version>
                 <configuration>
                     <descriptors>
-                        <descriptor>assembly.xml</descriptor>
+                        <descriptor>assemblyZip.xml</descriptor>
+                        <descriptor>assemblyLibJar.xml</descriptor>
                     </descriptors>
                 </configuration>
                 <executions>
