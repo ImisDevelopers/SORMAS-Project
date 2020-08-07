@@ -10,7 +10,7 @@ cd sormas-severlibs && mvn install
 ### Start DB
 
 ```
-cd sormas-cargo && docker compose up -d
+cd sormas-cargo && docker-compose up -d
 ```
 
 ## Run
