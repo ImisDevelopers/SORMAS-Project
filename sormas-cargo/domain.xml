@@ -51,7 +51,7 @@
                               connection-validation-method="custom-validation" res-type="javax.sql.ConnectionPoolDataSource">
             <property name="password" value="password"></property>
             <property name="databaseName" value="sormas"></property>
-            <property name="serverName" value="postgres"></property>
+            <property name="serverName" value="localhost"></property>
             <property name="user" value="sormas_user"></property>
             <property name="portNumber" value="5432"></property>
         </jdbc-connection-pool>
@@ -62,7 +62,7 @@
         <jdbc-connection-pool max-pool-size="128" datasource-classname="org.postgresql.xa.PGXADataSource" name="sormasAuditlogPool" validation-classname="org.glassfish.api.jdbc.validation.PostgresConnectionValidation" is-connection-validation-required="true" connection-validation-method="custom-validation" res-type="javax.sql.XADataSource">
             <property name="password" value="password"></property>
             <property name="databaseName" value="sormas_audit"></property>
-            <property name="serverName" value="postgres"></property>
+            <property name="serverName" value="localhost"></property>
             <property name="user" value="sormas_user"></property>
             <property name="portNumber" value="5432"></property>
         </jdbc-connection-pool>
