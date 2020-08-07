@@ -23,3 +23,4 @@ deploy
 /sormas-app/java_pid21052.hprof
 bin
 /sormas-base/setup/setup.log
+/sormas-cargo/psql-payara-dev

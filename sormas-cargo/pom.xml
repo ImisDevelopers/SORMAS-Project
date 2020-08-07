@@ -62,7 +62,8 @@
                         <properties>
                             <!-- <cargo.slf4j.version>${slf4j.version}</cargo.slf4j.version> -->
                             <cargo.glassfish.domain.name>sormas</cargo.glassfish.domain.name>
-                            <cargo.glassfish.admin.port>4848</cargo.glassfish.admin.port>
+                            <cargo.glassfish.admin.port>6048</cargo.glassfish.admin.port>
+                            <cargo.servlet.port>6080</cargo.servlet.port>
                         </properties>
                         <configfiles>
                             <configfile>
@@ -87,7 +88,6 @@
                                 <file>${basedir}/../sormas-ui/target/sormas-ui.war</file>
                                 <todir>sormas/applications/sormas-ui</todir>
                             </file>
-
                         </files>
                     </configuration>
                 </configuration>
