@@ -13,7 +13,7 @@ services:
       - SORMAS_POSTGRES_USER=${SORMAS_POSTGRES_USER}
       - TZ=${TZ}
     volumes:
-      - ${SORMAS_PATH:-.}/psql-payara-dev:/var/lib/postgresql/data
+      - ${SORMAS_PATH:-./target}/psql-payara-dev:/var/lib/postgresql/data
     ports:
       - "5432:5432"
     cpus: ${DB_CPUS}
