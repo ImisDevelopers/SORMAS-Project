@@ -45,7 +45,7 @@
             <plugin>
                 <groupId>org.codehaus.cargo</groupId>
                 <artifactId>cargo-maven2-plugin</artifactId>
-                <version>1.7.15</version>
+                <version>1.7.16</version>
                 <configuration>
                     <container>
                         <containerId>payara</containerId>
@@ -56,9 +56,11 @@
                                 <classifier>libjar</classifier>
                             </dependency>
                         </dependencies>
+                        <zipUrlInstaller>
+                            <url>https://repo.maven.apache.org/maven2/fish/payara/distributions/payara/5.201/payara-5.201.zip</url>
+                        </zipUrlInstaller>
                     </container>
                     <configuration>
-                        <type>standalone</type>
                         <properties>
                             <!-- <cargo.slf4j.version>${slf4j.version}</cargo.slf4j.version> -->
                             <cargo.glassfish.domain.name>sormas</cargo.glassfish.domain.name>
@@ -75,21 +77,33 @@
                                 <todir>sormas/config/</todir>
                             </configfile>
                         </configfiles>
-                        <files>
-                            <file>
-                                <file>${basedir}/../sormas-ear/target/sormas-ear.ear</file>
-                                <todir>sormas/autodeploy/</todir>
-                            </file>
-                            <file>
-                                <file>${basedir}/../sormas-rest/target/sormas-rest.war</file>
-                                <todir>sormas/autodeploy/</todir>
-                            </file>
-                            <file>
-                                <file>${basedir}/../sormas-ui/target/sormas-ui.war</file>
-                                <todir>sormas/autodeploy/</todir>
-                            </file>
-                        </files>
                     </configuration>
+                    <deployables>
+                        <deployable>
+                            <groupId>de.symeda.sormas</groupId>
+                            <artifactId>sormas-ear</artifactId>
+                            <type>ear</type>
+                            <properties>
+                                <name>sormas-ear</name>
+                            </properties>
+                        </deployable>
+                        <deployable>
+                            <groupId>de.symeda.sormas</groupId>
+                            <artifactId>sormas-rest</artifactId>
+                            <type>war</type>
+                            <properties>
+                                <context>/sormas-rest</context>
+                            </properties>
+                        </deployable>
+                        <deployable>
+                            <groupId>de.symeda.sormas</groupId>
+                            <artifactId>sormas-ui</artifactId>
+                            <type>war</type>
+                            <properties>
+                                <context>/sormas-ui</context>
+                            </properties>
+                        </deployable>
+                    </deployables>
                 </configuration>
             </plugin>
         </plugins>
