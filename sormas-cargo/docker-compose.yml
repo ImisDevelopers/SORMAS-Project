@@ -15,12 +15,3 @@ services:
       - ./target/psql-payara-dev:/var/lib/postgresql/data
     ports:
       - "5432:5432"
-    cpus: ${DB_CPUS:-2.0}
-    mem_limit: ${DB_MEM:-2000m}
-    mem_reservation: ${DB_MEM_RESERVED:-1000m}
-    healthcheck:
-      test: ["CMD", "psql", "-U", "sormas_user", "-c", "SELECT 1;", "sormas_db"]
-      interval: 30s
-      timeout: 3s
-      retries: 3
-      start_period: 30s
