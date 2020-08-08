@@ -78,15 +78,15 @@
                         <files>
                             <file>
                                 <file>${basedir}/../sormas-ear/target/sormas-ear.ear</file>
-                                <todir>sormas/applications/sormas-ear</todir>
+                                <todir>sormas/autodeploy/</todir>
                             </file>
                             <file>
                                 <file>${basedir}/../sormas-rest/target/sormas-rest.war</file>
-                                <todir>sormas/applications/sormas-rest</todir>
+                                <todir>sormas/autodeploy/</todir>
                             </file>
                             <file>
                                 <file>${basedir}/../sormas-ui/target/sormas-ui.war</file>
-                                <todir>sormas/applications/sormas-ui</todir>
+                                <todir>sormas/autodeploy/</todir>
                             </file>
                         </files>
                     </configuration>

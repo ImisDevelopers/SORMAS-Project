@@ -71,9 +71,6 @@
     </resources>
     <servers>
         <server config-ref="server-config" name="server">
-            <application-ref ref="sormas-ear" virtual-servers="server"/>
-            <application-ref ref="sormas-rest" virtual-servers="server"/>
-            <application-ref ref="sormas-ui" virtual-servers="server"/>
             <resource-ref ref="jdbc/__TimerPool"/>
             <resource-ref ref="jdbc/__default"/>
             <resource-ref ref="jms/__defaultConnectionFactory"/>
@@ -561,47 +558,4 @@
     </secure-admin>
     <deployment-groups/>
     <clusters/>
-    <applications>
-        <application deployment-time="32482" object-type="user" name="sormas-ear" location="${com.sun.aas.instanceRootURI}/applications/sormas-ear/sormas-ear.ear" time-deployed="1596673067117">
-            <property name="archiveType" value="ear"/>
-            <property name="cdiDevModeEnabled" value="false"/>
-            <property name="isComposite" value="true"/>
-            <property name="defaultAppName" value="sormas-ear"/>
-            <property name="appLocation" value="${com.sun.aas.instanceRootURI}/applications/sormas-ear/sormas-ear.ear"/>
-            <property name="org.glassfish.ejb.container.application_unique_id" value="104639564468191232"/>
-            <module name="sormas-backend.jar">
-                <engine sniffer="cdi"/>
-                <engine sniffer="ejb"/>
-                <engine sniffer="security"/>
-                <engine sniffer="jpa"/>
-            </module>
-            <engine sniffer="ear"/>
-        </application>
-        <application deployment-time="15184" context-root="/sormas-rest" object-type="user" name="sormas-rest" location="${com.sun.aas.instanceRootURI}/applications/sormas-rest/sormas-rest.war" time-deployed="1596673082529">
-            <property name="archiveType" value="war"/>
-            <property name="cdiDevModeEnabled" value="false"/>
-            <property name="defaultAppName" value="sormas-rest"/>
-            <property name="appLocation" value="${com.sun.aas.instanceRootURI}/applications/sormas-rest/sormas-rest.war"/>
-            <property name="org.glassfish.ejb.container.application_unique_id" value="104639564468256768"/>
-            <module name="sormas-rest">
-                <engine sniffer="cdi"/>
-                <engine sniffer="ejb"/>
-                <engine sniffer="security"/>
-                <engine sniffer="web"/>
-            </module>
-        </application>
-        <application deployment-time="7594" context-root="/sormas-ui" object-type="user" name="sormas-ui" location="${com.sun.aas.instanceRootURI}/applications/sormas-ui/sormas-ui.war" time-deployed="1596673090236">
-            <property name="archiveType" value="war"/>
-            <property name="cdiDevModeEnabled" value="false"/>
-            <property name="defaultAppName" value="sormas-ui"/>
-            <property name="appLocation" value="${com.sun.aas.instanceRootURI}/applications/sormas-ui/sormas-ui.war"/>
-            <property name="org.glassfish.ejb.container.application_unique_id" value="104639564468322304"/>
-            <module name="sormas-ui">
-                <engine sniffer="cdi"/>
-                <engine sniffer="ejb"/>
-                <engine sniffer="security"/>
-                <engine sniffer="web"/>
-            </module>
-        </application>
-    </applications>
 </domain>
