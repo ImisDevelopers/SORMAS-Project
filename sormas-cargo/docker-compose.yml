@@ -2,25 +2,24 @@ version: '2.3'
 services:
 
   postgres:
-    image: hzibraunschweig/sormas-postgres:${SORMAS_DOCKER_VERSION}
-    restart: unless-stopped
+    image: hzibraunschweig/sormas-postgres:${SORMAS_DOCKER_VERSION:-2.7.2}
     command: -c 'config_file=/etc/postgresql/postgresql.conf'
     environment:
-      - POSTGRES_PASSWORD=${SORMAS_POSTGRES_PASSWORD}
-      - DB_NAME=sormas
-      - DB_NAME_AUDIT=sormas_audit
-      - SORMAS_POSTGRES_PASSWORD=${SORMAS_POSTGRES_PASSWORD}
-      - SORMAS_POSTGRES_USER=${SORMAS_POSTGRES_USER}
-      - TZ=${TZ}
+      - POSTGRES_PASSWORD=sormas
+      - DB_NAME=sormas_db
+      - DB_NAME_AUDIT=sormas_audit_db
+      - SORMAS_POSTGRES_PASSWORD=sormas
+      - SORMAS_POSTGRES_USER=sormas_user
+      - TZ=Europe/Berlin
     volumes:
-      - ${SORMAS_PATH:-./target}/psql-payara-dev:/var/lib/postgresql/data
+      - ./target/psql-payara-dev:/var/lib/postgresql/data
     ports:
       - "5432:5432"
-    cpus: ${DB_CPUS}
+    cpus: ${DB_CPUS:-2.0}
     mem_limit: ${DB_MEM:-2000m}
-    mem_reservation: ${DB_MEM_RESERVED:-1000,}
+    mem_reservation: ${DB_MEM_RESERVED:-1000m}
     healthcheck:
-      test: ["CMD", "psql", "-U", "${SORMAS_POSTGRES_USER}", "-c", "SELECT 1;", "${DB_NAME}"]
+      test: ["CMD", "psql", "-U", "sormas_user", "-c", "SELECT 1;", "sormas_db"]
       interval: 30s
       timeout: 3s
       retries: 3
