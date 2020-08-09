@@ -1,0 +1,14 @@
+runtime: custom
+env: flex
+service: sormas-develop
+
+automatic_scaling:
+  min_num_instances: 1
+  max_num_instances: 1
+
+resources:
+  cpu: 2
+  memory_gb: 4
+
+beta_settings:
+  cloud_sql_instances: onyx-yeti-271818:europe-west1:sormas-dev=tcp:5432

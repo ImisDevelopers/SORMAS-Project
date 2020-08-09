@@ -1,5 +1,18 @@
 version: '2.3'
 services:
+  sormas:
+    build: .
+    ports:
+    - "4848:4848"
+    - "8080:8080"
+    environment:
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - DB_NAME=sormas_db
+      - DB_NAME_AUDIT=sormas_audit_db
+      - SORMAS_POSTGRES_PASSWORD=sormas
+      - SORMAS_POSTGRES_USER=sormas_user
+      - MAIL_FROM=admin@example.com
 
   postgres:
     image: hzibraunschweig/sormas-postgres:${SORMAS_DOCKER_VERSION:-2.7.2}
@@ -12,6 +25,6 @@ services:
       - SORMAS_POSTGRES_USER=sormas_user
       - TZ=Europe/Berlin
     volumes:
-      - ./target/psql-payara-dev:/var/lib/postgresql/data
+      - ./sormas-cargo/target/psql-payara-dev:/var/lib/postgresql/data
     ports:
       - "5432:5432"

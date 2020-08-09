@@ -1,0 +1,88 @@
+name: CI
+
+on:
+  push:
+    branches:
+    - feature/*
+    - development
+  pull_request:
+    branches:
+    - development
+    types:
+    - opened
+    - closed
+    - synchronize
+
+# Environment variables available to all jobs and steps in this workflow
+env:
+  GITHUB_SHA: ${{ github.sha }}
+  PR_NUMBER: ${{ github.event.pull_request.number }}
+  REGISTRY_HOSTNAME: eu.gcr.io
+  GCP_VERSION: '290.0.1'
+
+jobs:
+  stop-pr:
+    if: github.event.pull_request.closed == true || github.event.pull_request.merged == true
+    name: Stop PR
+    runs-on: ubuntu-latest
+    steps:
+    - uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
+      with:
+        version: ${GCP_VERSION}
+        service_account_email: ${{ secrets.GCP_EMAIL }}
+        service_account_key: ${{ secrets.GCP_KEY }}
+        project_id: ${{ secrets.GCP_PROJECT_ID }}
+    - name: Stop
+      run: |
+        gcloud app services delete sormas-pr-${PR_NUMBER}
+
+  run-test:
+    name: Test
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/setup-java@v1.3.0
+      with:
+        java-version: 1.11
+    - uses: actions/checkout@v2
+    - name: Test
+      run: |
+        echo "disabled!"
+        # mvn test -f sormas-base/pom.xml -B
+
+  deploy:
+    if: (github.event.pull_request.closed != true &&  github.event.pull_request.merged != true) || (github.event_name == 'push' && github.ref == 'refs/heads/master')
+    needs:
+    - run-test
+    name: Deploy PR or Staging
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    # Setup gcloud CLI
+    - uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
+      with:
+        version: ${GCP_VERSION}
+        service_account_email: ${{ secrets.GCP_EMAIL }}
+        service_account_key: ${{ secrets.GCP_KEY }}
+        project_id: ${{ secrets.GCP_PROJECT_ID }}
+
+    - name: Deploy
+      run: |
+        gcloud config set app/cloud_build_timeout 1200
+        sed -i "s/service: sormas-develop/service: sormas-pr-${PR_NUMBER:-staging}/g" app.yaml
+        gcloud app deploy
+
+        PR_URL="$(gcloud app browse --no-launch-browser --service=sormas-pr-${PR_NUMBER:-staging})"
+        echo "::set-env name=PR_COMMENT_MESSAGE::${PR_URL}"
+
+    - if: github.event_name == 'pull_request' && github.event.pull_request.closed != true &&  github.event.pull_request.merged != true
+      name: comment PR
+      uses: unsplash/comment-on-pr@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        msg: |
+          :arrow_right: Live preview at ${{ env.PR_COMMENT_MESSAGE }} :up:
+          :warning: First access might be very slow, database is shared. :eyes:
+        check_for_duplicate_msg: true
