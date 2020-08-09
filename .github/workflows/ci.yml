@@ -56,10 +56,11 @@ jobs:
         # mvn test -f sormas-base/pom.xml -B
 
   deploy:
-    if: (github.event.pull_request.closed != true &&  github.event.pull_request.merged != true) || (github.event_name == 'push' && github.ref == 'refs/heads/master')
+    if: (github.event.pull_request.closed != true &&  github.event.pull_request.merged != true)
+    # add to if statement if you want to deploy into a staging area: || (github.event_name == 'push' && github.ref == 'refs/heads/master')
     needs:
     - run-test
-    name: Deploy PR or Staging
+    name: Deploy PR
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
@@ -76,7 +77,7 @@ jobs:
     - name: Deploy
       run: |
         gcloud config set app/cloud_build_timeout 1200
-        sed -i "s/service: sormas-develop/service: sormas-pr-${PR_NUMBER:-staging}/g" app.yaml
+        sed -i "s/service:.*/service: sormas-pr-${PR_NUMBER:-staging}/g" app.yaml
         gcloud app deploy
 
         PR_URL="$(gcloud app browse --no-launch-browser --service=sormas-pr-${PR_NUMBER:-staging})"
