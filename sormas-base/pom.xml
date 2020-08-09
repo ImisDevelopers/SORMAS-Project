@@ -626,13 +626,6 @@
         </repository>
     </repositories>
 
-    <pluginRepositories>
-        <pluginRepository>
-            <id>gradle</id>
-            <url>https://repo.gradle.org/gradle/libs-releases-local/</url>
-        </pluginRepository>
-    </pluginRepositories>
-
     <profiles>
         <profile>
             <!-- Vaadin pre-release repositories -->
