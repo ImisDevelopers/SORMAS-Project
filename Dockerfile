@@ -35,5 +35,4 @@ COPY --from=build /usr/src/app/sormas-ear/target/sormas-ear.ear $DEPLOY_DIR
 COPY --from=build /usr/src/app/sormas-ui/target/sormas-ui.war $DEPLOY_DIR
 COPY --from=build /usr/src/app/sormas-rest/target/sormas-rest.war $DEPLOY_DIR
 
-EXPOSE 6080
-EXPOSE 6048
+EXPOSE 8080

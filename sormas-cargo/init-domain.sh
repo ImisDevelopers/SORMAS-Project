@@ -1,3 +1,17 @@
+#!/usr/bin/env bash
+
+# set some defaults
+DB_PORT=${DB_PORT:-5432}
+DB_NAME=${DB_NAME:-sormas_db}
+DB_NAME_AUDIT=${DB_NAME_AUDIT:-sormas_audit_db}
+SORMAS_POSTGRES_PASSWORD=${SORMAS_POSTGRES_PASSWORD:-sormasdev}
+SORMAS_POSTGRES_USER=${SORMAS_POSTGRES_USER:-sormas_user}
+MAIL_FROM=${MAIL_FROM:-admin@example.com}
+
+if [ -z "${DB_HOST}" ]; then
+  echo "DB_HOST not set"
+  exit 1
+fi
 
 # General domain settings
 echo "delete-jvm-options -Xmx512m" >> $POSTBOOT_COMMANDS

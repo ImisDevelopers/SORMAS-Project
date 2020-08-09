@@ -16,7 +16,7 @@ on:
 # Environment variables available to all jobs and steps in this workflow
 env:
   GITHUB_SHA: ${{ github.sha }}
-  PR_NUMBER: ${{ github.event.pull_request.number }}
+  PR_NUMBER: ${{ github.event.number }}
   REGISTRY_HOSTNAME: eu.gcr.io
 
 jobs:
@@ -77,10 +77,25 @@ jobs:
     - name: Deploy
       run: |
         gcloud config set app/cloud_build_timeout 1200
-        sed -i "s/service:.*/service: sormas-pr-${PR_NUMBER:-staging}/g" app.yaml
-        gcloud app deploy
+        # gcloud config set builds/use_kaniko True
 
-        PR_URL="$(gcloud app browse --no-launch-browser --service=sormas-pr-${PR_NUMBER:-staging})"
+        export IMAGE=eu.gcr.io/onyx-yeti-271818/run/sormas-pr-${PR_NUMBER:-staging}
+
+        gcloud builds submit --tag $IMAGE --timeout=30m
+
+        gcloud run deploy sormas-pr-${PR_NUMBER:-staging} --image "$IMAGE" \
+          --platform=managed \
+          --allow-unauthenticated \
+          --max-instances=1 \
+          --memory=2Gi --cpu=2 \
+          --concurrency=200 \
+          --region=europe-west1 \
+          --verbosity=debug \
+          --add-cloudsql-instances onyx-yeti-271818:europe-west1:sormas-dev \
+          --set-env-vars "DB_HOST=/cloudsql/onyx-yeti-271818:europe-west1:sormas-dev" \
+          --service-account=cloudsql-instance-service-acco@onyx-yeti-271818.iam.gserviceaccount.com
+
+        PR_URL="$(gcloud run services describe sormas-pr-${PR_NUMBER:-staging} --platform=managed --region=europe-west1 --format=yaml | grep -o 'url:.*' | uniq)"
         echo "::set-env name=PR_COMMENT_MESSAGE::${PR_URL}"
 
     - if: github.event_name == 'pull_request' && github.event.pull_request.closed != true &&  github.event.pull_request.merged != true
