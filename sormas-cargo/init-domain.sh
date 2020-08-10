@@ -13,9 +13,15 @@ if [ -z "${DB_HOST}" ]; then
   exit 1
 fi
 
+# disable unnecessary stuff
+echo "set-hazelcast-configuration --enabled=false"
+echo "set-monitoring-service-configuration --enabled=false"
+echo "set-healthcheck-configuration --enabled=true"
+echo "disable-phone-home"
+
 # General domain settings
-echo "delete-jvm-options -Xmx512m" >> $POSTBOOT_COMMANDS
-echo "create-jvm-options -Xmx4096m" >> $POSTBOOT_COMMANDS
+#echo "delete-jvm-options -Xmx512m" >> $POSTBOOT_COMMANDS
+#echo "create-jvm-options -Xmx4096m" >> $POSTBOOT_COMMANDS
 
 # JDBC pool
 echo "create-jdbc-connection-pool --restype javax.sql.ConnectionPoolDataSource \
