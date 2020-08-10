@@ -76,8 +76,7 @@ jobs:
 
     - name: Deploy
       run: |
-        gcloud config set app/cloud_build_timeout 1200
-        # gcloud config set builds/use_kaniko True
+        gcloud config set builds/use_kaniko True
 
         export IMAGE=eu.gcr.io/onyx-yeti-271818/run/sormas-pr-${PR_NUMBER:-staging}
 
@@ -85,10 +84,11 @@ jobs:
 
         gcloud run deploy sormas-pr-${PR_NUMBER:-staging} --image "$IMAGE" \
           --platform=managed \
+          --port 8080 \
           --allow-unauthenticated \
           --max-instances=1 \
           --memory=2Gi --cpu=2 \
-          --concurrency=200 \
+          --concurrency=80 \
           --region=europe-west1 \
           --verbosity=debug \
           --add-cloudsql-instances onyx-yeti-271818:europe-west1:sormas-dev \

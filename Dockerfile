@@ -36,3 +36,5 @@ COPY --from=build /usr/src/app/sormas-ui/target/sormas-ui.war $DEPLOY_DIR
 COPY --from=build /usr/src/app/sormas-rest/target/sormas-rest.war $DEPLOY_DIR
 
 EXPOSE 8080
+USER root
+RUN chmod +x /tini ${SCRIPT_DIR}/entrypoint.sh
