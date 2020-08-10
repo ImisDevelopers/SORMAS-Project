@@ -18,6 +18,12 @@
             <artifactId>postgresql</artifactId>
             <scope>provided</scope>
         </dependency>
+        <dependency>
+            <groupId>com.google.cloud.sql</groupId>
+            <artifactId>postgres-socket-factory</artifactId>
+            <version>1.0.16</version>
+            <scope>provided</scope>
+        </dependency>
 
         <dependency>
             <groupId>org.hibernate</groupId>

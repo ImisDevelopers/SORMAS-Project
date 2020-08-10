@@ -25,20 +25,7 @@
     <system-applications/>
     <resources>
         <jdbc-resource pool-name="__TimerPool" object-type="system-all" jndi-name="jdbc/__TimerPool"/>
-        <jdbc-resource pool-name="DerbyPool" object-type="system-all" jndi-name="jdbc/__derby"/>
         <jdbc-resource pool-name="H2Pool" object-type="system-all" jndi-name="jdbc/__default"/>
-        <jdbc-connection-pool datasource-classname="org.apache.derby.jdbc.EmbeddedXADataSource" name="__TimerPool" res-type="javax.sql.XADataSource">
-            <property name="databaseName" value="${com.sun.aas.instanceRoot}/lib/databases/ejbtimer"/>
-            <property name="connectionAttributes" value=";create=true"/>
-        </jdbc-connection-pool>
-        <jdbc-connection-pool is-isolation-level-guaranteed="false" datasource-classname="org.apache.derby.jdbc.ClientDataSource" name="DerbyPool" res-type="javax.sql.DataSource">
-            <property name="PortNumber" value="1527"/>
-            <property name="Password" value="APP"/>
-            <property name="User" value="APP"/>
-            <property name="serverName" value="localhost"/>
-            <property name="DatabaseName" value="sun-appserv-samples"/>
-            <property name="connectionAttributes" value=";create=true"/>
-        </jdbc-connection-pool>
         <jdbc-connection-pool is-isolation-level-guaranteed="false" datasource-classname="org.h2.jdbcx.JdbcDataSource" name="H2Pool" res-type="javax.sql.DataSource">
             <property name="URL" value="jdbc:h2:${com.sun.aas.instanceRoot}/lib/databases/embedded_default;AUTO_SERVER=TRUE"/>
         </jdbc-connection-pool>
@@ -47,19 +34,19 @@
         <connector-connection-pool resource-adapter-name="jmsra" max-pool-size="250" steady-pool-size="1" name="jms/__defaultConnectionFactory-Connection-Pool" connection-definition-name="javax.jms.ConnectionFactory"/>
         <connector-resource pool-name="jms/__defaultConnectionFactory-Connection-Pool" object-type="system-all-req" jndi-name="jms/__defaultConnectionFactory"/>
         <jdbc-connection-pool datasource-classname="org.postgresql.ds.PGConnectionPoolDataSource" name="sormasDataPool" validation-classname="org.glassfish.api.jdbc.validation.PostgresConnectionValidation" is-connection-validation-required="true" connection-validation-method="custom-validation" res-type="javax.sql.ConnectionPoolDataSource">
-            <property name="password" value="sormas"/>
+            <property name="socketFactory" value="com.google.cloud.sql.postgres.SocketFactory"/>
+            <property name="cloudSqlInstance" value="onyx-yeti-271818:europe-west1:sormas-dev"/>
             <property name="databaseName" value="sormas_db"/>
-            <property name="serverName" value="localhost"/>
             <property name="user" value="sormas_user"/>
-            <property name="portNumber" value="5432"/>
+            <property name="password" value="sormas"/>
         </jdbc-connection-pool>
         <jdbc-resource pool-name="sormasDataPool" jndi-name="jdbc/sormasDataPool"/>
         <jdbc-connection-pool datasource-classname="org.postgresql.xa.PGXADataSource" name="sormasAuditlogPool" validation-classname="org.glassfish.api.jdbc.validation.PostgresConnectionValidation" is-connection-validation-required="true" connection-validation-method="custom-validation" res-type="javax.sql.XADataSource">
-            <property name="password" value="sormas"/>
+            <property name="socketFactory" value="com.google.cloud.sql.postgres.SocketFactory"/>
+            <property name="cloudSqlInstance" value="onyx-yeti-271818:europe-west1:sormas-dev"/>
             <property name="databaseName" value="sormas_audit_db"/>
-            <property name="serverName" value="localhost"/>
             <property name="user" value="sormas_user"/>
-            <property name="portNumber" value="5432"/>
+            <property name="password" value="sormas"/>
         </jdbc-connection-pool>
         <jdbc-resource pool-name="sormasAuditlogPool" jndi-name="jdbc/AuditlogPool"/>
         <mail-resource auth="false" host="localhost" from="nail@example.com" user="user" jndi-name="mail/MailSession"/>
@@ -71,7 +58,6 @@
         <server config-ref="server-config" name="server">
             <resource-ref ref="jdbc/__TimerPool"/>
             <resource-ref ref="jdbc/__default"/>
-            <resource-ref ref="jdbc/__derby"/>
             <resource-ref ref="concurrent/__defaultManagedExecutorService"/>
             <resource-ref ref="concurrent/__defaultManagedScheduledExecutorService"/>
             <resource-ref ref="jms/__defaultConnectionFactory"/>
@@ -90,20 +76,9 @@
             <payara-executor-service-configuration/>
             <http-service>
                 <access-log/>
-                <virtual-server network-listeners="http-listener-1,http-listener-2" id="server"/>
+                <virtual-server network-listeners="http-listener-1" id="server"/>
                 <virtual-server network-listeners="admin-listener" id="__asadmin"/>
             </http-service>
-            <iiop-service>
-                <orb use-thread-pool-ids="thread-pool-1"/>
-                <iiop-listener address="0.0.0.0" port="6037" lazy-init="true" id="orb-listener-1"/>
-                <ssl/>
-                <iiop-listener address="0.0.0.0" port="6038" id="SSL" security-enabled="true">
-                    <ssl classname="com.sun.enterprise.security.ssl.GlassfishSSLImpl" cert-nickname="s1as"/>
-                </iiop-listener>
-                <iiop-listener address="0.0.0.0" port="6039" id="SSL_MUTUALAUTH" security-enabled="true">
-                    <ssl classname="com.sun.enterprise.security.ssl.GlassfishSSLImpl" cert-nickname="s1as" client-auth-enabled="true"/>
-                </iiop-listener>
-            </iiop-service>
             <admin-service system-jmx-connector-name="system" type="das-and-server">
                 <jmx-connector address="0.0.0.0" port="6086" name="system" auth-realm-name="admin-realm" security-enabled="false"/>
                 <property name="adminConsoleContextRoot" value="/admin"/>
@@ -221,7 +196,6 @@
                 <jvm-options>-Dcom.sun.enterprise.security.httpsOutboundKeyAlias=s1as</jvm-options>
                 <jvm-options>-Djavax.net.ssl.keyStore=${com.sun.aas.instanceRoot}/config/keystore.jks</jvm-options>
                 <jvm-options>-Djavax.net.ssl.trustStore=${com.sun.aas.instanceRoot}/config/cacerts.jks</jvm-options>
-                <jvm-options>-Djdbc.drivers=org.apache.derby.jdbc.ClientDriver</jvm-options>
                 <jvm-options>-DANTLR_USE_DIRECT_CLASS_LOADING=true</jvm-options>
                 <jvm-options>-Dcom.sun.enterprise.config.config_environment_factory_class=com.sun.enterprise.config.serverbeans.AppserverConfigEnvironmentFactory</jvm-options>
                 <jvm-options>-Dorg.glassfish.additionalOSGiBundlesToStart=org.apache.felix.shell,org.apache.felix.gogo.runtime,org.apache.felix.gogo.shell,org.apache.felix.gogo.command,org.apache.felix.shell.remote,org.apache.felix.fileinstall</jvm-options>
@@ -261,12 +235,6 @@
                         </http>
                         <ssl/>
                     </protocol>
-                    <protocol name="http-listener-2" security-enabled="true">
-                        <http max-connections="250" default-virtual-server="server">
-                            <file-cache/>
-                        </http>
-                        <ssl classname="com.sun.enterprise.security.ssl.GlassfishSSLImpl" cert-nickname="s1as"/>
-                    </protocol>
                     <protocol name="admin-listener">
                         <http encoded-slash-enabled="true" max-connections="250" default-virtual-server="__asadmin">
                             <file-cache/>
@@ -274,9 +242,8 @@
                     </protocol>
                 </protocols>
                 <network-listeners>
-                    <network-listener protocol="http-listener-1" port="6080" name="http-listener-1" thread-pool="http-thread-pool" transport="tcp"/>
-                    <network-listener protocol="http-listener-2" port="6081" name="http-listener-2" thread-pool="http-thread-pool" transport="tcp"/>
-                    <network-listener protocol="admin-listener" port="6048" name="admin-listener" thread-pool="admin-thread-pool" transport="tcp"/>
+                    <network-listener protocol="http-listener-1" port="8080" name="http-listener-1" thread-pool="http-thread-pool" transport="tcp"/>
+                    <network-listener protocol="admin-listener" port="4848" name="admin-listener" thread-pool="admin-thread-pool" transport="tcp"/>
                 </network-listeners>
                 <transports>
                     <transport name="tcp"/>
@@ -298,22 +265,11 @@
             <payara-executor-service-configuration/>
             <http-service>
                 <access-log/>
-                <virtual-server network-listeners="http-listener-1, http-listener-2" id="server">
+                <virtual-server network-listeners="http-listener-1" id="server">
                     <property name="default-web-xml" value="${com.sun.aas.instanceRoot}/config/default-web.xml"/>
                 </virtual-server>
                 <virtual-server network-listeners="admin-listener" id="__asadmin"/>
             </http-service>
-            <iiop-service>
-                <orb use-thread-pool-ids="thread-pool-1"/>
-                <iiop-listener address="0.0.0.0" port="${IIOP_LISTENER_PORT}" id="orb-listener-1"/>
-                <ssl/>
-                <iiop-listener address="0.0.0.0" port="${IIOP_SSL_LISTENER_PORT}" id="SSL" security-enabled="true">
-                    <ssl classname="com.sun.enterprise.security.ssl.GlassfishSSLImpl" cert-nickname="s1as"/>
-                </iiop-listener>
-                <iiop-listener address="0.0.0.0" port="${IIOP_SSL_MUTUALAUTH_PORT}" id="SSL_MUTUALAUTH" security-enabled="true">
-                    <ssl classname="com.sun.enterprise.security.ssl.GlassfishSSLImpl" cert-nickname="s1as" client-auth-enabled="true"/>
-                </iiop-listener>
-            </iiop-service>
             <admin-service system-jmx-connector-name="system">
                 <jmx-connector address="0.0.0.0" port="${JMX_SYSTEM_CONNECTOR_PORT}" name="system" auth-realm-name="admin-realm" security-enabled="false"/>
                 <property name="adminConsoleDownloadLocation" value="${com.sun.aas.installRoot}/lib/install/applications/admingui.war"/>
@@ -419,7 +375,6 @@
                 <jvm-options>-Dcom.sun.enterprise.security.httpsOutboundKeyAlias=s1as</jvm-options>
                 <jvm-options>-Djavax.net.ssl.keyStore=${com.sun.aas.instanceRoot}/config/keystore.jks</jvm-options>
                 <jvm-options>-Djavax.net.ssl.trustStore=${com.sun.aas.instanceRoot}/config/cacerts.jks</jvm-options>
-                <jvm-options>-Djdbc.drivers=org.apache.derby.jdbc.ClientDriver</jvm-options>
                 <jvm-options>-DANTLR_USE_DIRECT_CLASS_LOADING=true</jvm-options>
                 <jvm-options>-Dcom.sun.enterprise.config.config_environment_factory_class=com.sun.enterprise.config.serverbeans.AppserverConfigEnvironmentFactory</jvm-options>
                 <jvm-options>-XX:NewRatio=2</jvm-options>
@@ -458,12 +413,6 @@
                         </http>
                         <ssl/>
                     </protocol>
-                    <protocol name="http-listener-2" security-enabled="true">
-                        <http default-virtual-server="server">
-                            <file-cache/>
-                        </http>
-                        <ssl classname="com.sun.enterprise.security.ssl.GlassfishSSLImpl" cert-nickname="s1as"/>
-                    </protocol>
                     <protocol name="admin-listener">
                         <http max-connections="250" default-virtual-server="__asadmin">
                             <file-cache/>
@@ -487,7 +436,6 @@
                 </protocols>
                 <network-listeners>
                     <network-listener protocol="http-listener-1" port="${HTTP_LISTENER_PORT}" name="http-listener-1" thread-pool="http-thread-pool" transport="tcp"/>
-                    <network-listener protocol="http-listener-2" port="${HTTP_SSL_LISTENER_PORT}" name="http-listener-2" thread-pool="http-thread-pool" transport="tcp"/>
                     <network-listener protocol="pu-protocol" port="${ASADMIN_LISTENER_PORT}" name="admin-listener" thread-pool="admin-thread-pool" transport="tcp"/>
                 </network-listeners>
                 <transports>

@@ -14,14 +14,16 @@ if [ -z "${DB_HOST}" ]; then
 fi
 
 # disable unnecessary stuff
-echo "set-hazelcast-configuration --enabled=false"
-echo "set-monitoring-service-configuration --enabled=false"
-echo "set-healthcheck-configuration --enabled=true"
-echo "disable-phone-home"
+echo "set-hazelcast-configuration --enabled=false" >> $POSTBOOT_COMMANDS
+echo "set-monitoring-service-configuration --enabled=false" >> $POSTBOOT_COMMANDS
+echo "set-healthcheck-configuration --enabled=true" >> $POSTBOOT_COMMANDS
+echo "disable-phone-home" >> $POSTBOOT_COMMANDS
+echo "set configs.config.server-config.http-service.virtual-server.server.network-listeners=http-listener-1" >> $POSTBOOT_COMMANDS
+echo "delete-network-listener --target=server-config http-listener-2" >> $POSTBOOT_COMMANDS
 
 # General domain settings
-#echo "delete-jvm-options -Xmx512m" >> $POSTBOOT_COMMANDS
-#echo "create-jvm-options -Xmx4096m" >> $POSTBOOT_COMMANDS
+echo "delete-jvm-options '-Xmx512m'" >> $POSTBOOT_COMMANDS
+echo "create-jvm-options '-Xmx4096m'" >> $POSTBOOT_COMMANDS
 
 # JDBC pool
 echo "create-jdbc-connection-pool --restype javax.sql.ConnectionPoolDataSource \
@@ -47,6 +49,7 @@ echo "create-jvm-options -Dlogback.configurationFile=\${com.sun.aas.instanceRoot
 echo "set-log-attributes com.sun.enterprise.server.logging.GFFileHandler.maxHistoryFiles=14" >> $POSTBOOT_COMMANDS
 echo "set-log-attributes com.sun.enterprise.server.logging.GFFileHandler.rotationLimitInBytes=0" >> $POSTBOOT_COMMANDS
 echo "set-log-attributes com.sun.enterprise.server.logging.GFFileHandler.rotationOnDateChange=true" >> $POSTBOOT_COMMANDS
+echo "set-log-attributes com.sun.enterprise.server.logging.UniformLogFormatter.ansiColor=true" >> $POSTBOOT_COMMANDS
 
 echo "deploy /opt/payara/deployments/sormas-ear.ear" >> $POSTBOOT_COMMANDS
 echo "deploy /opt/payara/deployments/sormas-rest.war" >> $POSTBOOT_COMMANDS

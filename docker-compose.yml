@@ -13,6 +13,7 @@ services:
       - SORMAS_POSTGRES_PASSWORD=sormas
       - SORMAS_POSTGRES_USER=sormas_user
       - MAIL_FROM=admin@example.com
+    mem_limit: 2G
 
   postgres:
     image: hzibraunschweig/sormas-postgres:${SORMAS_DOCKER_VERSION:-2.7.2}
