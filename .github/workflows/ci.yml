@@ -93,7 +93,8 @@ jobs:
           --verbosity=debug \
           --add-cloudsql-instances onyx-yeti-271818:europe-west1:sormas-dev \
           --set-env-vars "DB_HOST=/cloudsql/onyx-yeti-271818\:europe-west1\:sormas-dev" \
-          --service-account=cloudsql-instance-service-acco@onyx-yeti-271818.iam.gserviceaccount.com
+          --service-account=cloudsql-instance-service-acco@onyx-yeti-271818.iam.gserviceaccount.com \
+          --command=-Dpayara.domain.config=stage
 
         PR_URL="$(gcloud run services describe sormas-pr-${PR_NUMBER:-staging} --platform=managed --region=europe-west1 --format=yaml | grep -o 'url:.*' | uniq)"
         echo "::set-env name=PR_COMMENT_MESSAGE::${PR_URL}"

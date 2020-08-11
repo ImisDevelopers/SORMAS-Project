@@ -12,6 +12,10 @@
     <name>${project.artifactId}</name>
     <packaging>pom</packaging>
 
+    <properties>
+        <payara.domain.config>dev</payara.domain.config>
+    </properties>
+
     <dependencies>
         <dependency>
             <groupId>de.symeda.sormas</groupId>
@@ -59,13 +63,14 @@
                         <zipUrlInstaller>
                             <url>https://repo.maven.apache.org/maven2/fish/payara/distributions/payara/5.201/payara-5.201.zip</url>
                         </zipUrlInstaller>
+                        <logLevel>debug</logLevel>
                     </container>
                     <configuration>
                         <properties>
                             <!-- <cargo.slf4j.version>${slf4j.version}</cargo.slf4j.version> -->
                             <cargo.glassfish.domain.name>sormas</cargo.glassfish.domain.name>
-                            <cargo.glassfish.admin.port>8080</cargo.glassfish.admin.port>
-                            <cargo.servlet.port>4848</cargo.servlet.port>
+                            <cargo.glassfish.admin.port>4848</cargo.glassfish.admin.port>
+                            <cargo.servlet.port>8080</cargo.servlet.port>
                             <cargo.logging>high</cargo.logging>
                         </properties>
                         <configfiles>
@@ -74,7 +79,7 @@
                                 <todir>sormas</todir>
                             </configfile>
                             <configfile>
-                                <file>${basedir}/domain.xml</file>
+                                <file>${basedir}/domain-${payara.domain.config}.xml</file>
                                 <todir>sormas/config/</todir>
                             </configfile>
                         </configfiles>
