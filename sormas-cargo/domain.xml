@@ -291,9 +291,6 @@
             <jms-service addresslist-behavior="priority" default-jms-host="default_JMS_host" type="EMBEDDED">
                 <jms-host port="${JMS_PROVIDER_PORT}" host="localhost" name="default_JMS_host"/>
             </jms-service>
-            <log-service file="${com.sun.aas.instanceRoot}/logs/server.log" log-rotation-limit-in-bytes="2000000">
-                <module-log-levels/>
-            </log-service>
             <security-service>
                 <auth-realm classname="com.sun.enterprise.security.auth.realm.file.FileRealm" name="admin-realm">
                     <property name="file" value="${com.sun.aas.instanceRoot}/config/admin-keyfile"/>

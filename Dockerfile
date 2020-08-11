@@ -9,9 +9,7 @@ COPY ./sormas-rest/pom.xml  /usr/src/app/sormas-rest/pom.xml
 COPY ./sormas-serverlibs/ /usr/src/app/sormas-serverlibs/
 COPY ./sormas-ui/pom.xml /usr/src/app/sormas-ui/pom.xml
 COPY ./sormas-widgetset/pom.xml /usr/src/app/sormas-widgetset/pom.xml
-COPY ./sormas-cargo/pom.xml /usr/src/app/sormas-cargo/pom.xml
 RUN mvn -f /usr/src/app/sormas-base/pom.xml verify clean --fail-never -B
-RUN mvn -f /usr/src/app/sormas-cargo/pom.xml verify --fail-never -B
 RUN mvn -f /usr/src/app/sormas-serverlibs/pom.xml install --fail-never -B
 
 # copy sources
@@ -22,12 +20,15 @@ COPY ./sormas-ear /usr/src/app/sormas-ear
 COPY ./sormas-rest /usr/src/app/sormas-rest
 COPY ./sormas-ui /usr/src/app/sormas-ui
 COPY ./sormas-widgetset /usr/src/app/sormas-widgetset
-COPY ./sormas-cargo /usr/src/app/sormas-cargo
 
 # build
 RUN cd /usr/src/app/sormas-base && mvn install -DskipTests=true
 
+# Prepare server env
+COPY ./sormas-cargo /usr/src/app/sormas-cargo
+RUN mvn -f /usr/src/app/sormas-cargo/pom.xml verify cargo:install --fail-never -B
+
 EXPOSE 8080
 WORKDIR /usr/src/app/sormas-cargo
 
-ENTRYPOINT ["mvn", "cargo:run"]
+ENTRYPOINT ["mvn", "cargo:run", "-B"]

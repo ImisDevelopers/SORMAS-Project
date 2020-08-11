@@ -64,8 +64,9 @@
                         <properties>
                             <!-- <cargo.slf4j.version>${slf4j.version}</cargo.slf4j.version> -->
                             <cargo.glassfish.domain.name>sormas</cargo.glassfish.domain.name>
-                            <cargo.glassfish.admin.port>4848</cargo.glassfish.admin.port>
-                            <cargo.servlet.port>8080</cargo.servlet.port>
+                            <cargo.glassfish.admin.port>8080</cargo.glassfish.admin.port>
+                            <cargo.servlet.port>4848</cargo.servlet.port>
+                            <cargo.logging>high</cargo.logging>
                         </properties>
                         <configfiles>
                             <configfile>
