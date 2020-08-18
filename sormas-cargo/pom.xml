@@ -67,11 +67,11 @@
                     </container>
                     <configuration>
                         <properties>
-                            <!-- <cargo.slf4j.version>${slf4j.version}</cargo.slf4j.version> -->
+                            <cargo.glassfish.removeDefaultDatasource>false</cargo.glassfish.removeDefaultDatasource>
                             <cargo.glassfish.domain.name>sormas</cargo.glassfish.domain.name>
                             <cargo.glassfish.admin.port>4848</cargo.glassfish.admin.port>
                             <cargo.servlet.port>8080</cargo.servlet.port>
-                            <cargo.logging>high</cargo.logging>
+                            <cargo.remote.timeout>600000</cargo.remote.timeout>
                         </properties>
                         <configfiles>
                             <configfile>
@@ -80,7 +80,8 @@
                             </configfile>
                             <configfile>
                                 <file>${basedir}/domain-${payara.domain.config}.xml</file>
-                                <todir>sormas/config/</todir>
+                                <todir>sormas/config</todir>
+                                <tofile>domain.xml</tofile>
                             </configfile>
                         </configfiles>
                     </configuration>

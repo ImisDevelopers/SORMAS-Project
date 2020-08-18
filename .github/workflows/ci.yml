@@ -77,6 +77,7 @@ jobs:
     - name: Deploy
       run: |
         gcloud config set builds/use_kaniko True
+        gcloud config set builds/kaniko_cache_ttl 24
 
         export IMAGE=eu.gcr.io/onyx-yeti-271818/run/sormas-pr-${PR_NUMBER:-staging}
 
@@ -92,9 +93,8 @@ jobs:
           --region=europe-west1 \
           --verbosity=debug \
           --add-cloudsql-instances onyx-yeti-271818:europe-west1:sormas-dev \
-          --set-env-vars "DB_HOST=/cloudsql/onyx-yeti-271818\:europe-west1\:sormas-dev" \
           --service-account=cloudsql-instance-service-acco@onyx-yeti-271818.iam.gserviceaccount.com \
-          --command=-Dpayara.domain.config=stage
+          --args=-Dpayara.domain.config=gcloud,-Dorg.slf4j.simpleLogger.defaultLogLevel=debug
 
         PR_URL="$(gcloud run services describe sormas-pr-${PR_NUMBER:-staging} --platform=managed --region=europe-west1 --format=yaml | grep -o 'url:.*' | uniq)"
         echo "::set-env name=PR_COMMENT_MESSAGE::${PR_URL}"

@@ -14,6 +14,7 @@ cd sormas-cargo && docker-compose up -d
 ```
 
 ## Run
+This will start and configure payara application server. 
 
 ```
 cd sormas-cargo && mvn cargo:run
@@ -21,4 +22,6 @@ cd sormas-cargo && mvn cargo:run
 
 ## Visit
 
-http://localhost:6080/sormas-ui
+http://localhost:8080/sormas-ui
+
+[Payara admin](http://localhost:4848) (user: `admin`, password: `admin`)
