@@ -5022,4 +5022,16 @@ ALTER TABLE campaigndiagramdefinition_history ADD COLUMN diagramCaption varchar(
 INSERT INTO schema_version (version_number, comment) VALUES (243, 'Campaign diagram visualization #2526');
 
 
+-- 2020-08-14 table for templates
+CREATE TABLE template(
+                id bigint not null,
+                uuid varchar(36) not null unique,
+                changedate timestamp not null,
+                creationdate timestamp not null,
+                workflow text,
+                document BYTEA
+);
+
+ALTER TABLE templates OWNER TO sormas_user;
+
 -- *** Insert new sql commands BEFORE this line ***
