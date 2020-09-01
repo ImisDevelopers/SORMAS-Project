@@ -19,7 +19,6 @@ public class DocumentTemplateFacadeEjbTest extends AbstractBeanTest {
 
     @Test
     public void testTemplateCreation() {
-        DocumentTemplateFacadeEjb tf = new DocumentTemplateFacadeEjb();
         DocumentTemplate template = new DocumentTemplate();
         template.setWorkflow("testing1");
         XWPFDocument doc = new XWPFDocument();
@@ -30,12 +29,12 @@ public class DocumentTemplateFacadeEjbTest extends AbstractBeanTest {
         Timestamp ts = new Timestamp(50000000);
         template.setCreationDate(ts);
         template.setChangeDate(ts);
-        tf.saveTemplate(template);
+        getDocumentTemplateFacade().saveTemplate(template);
 
-        assertNotNull(tf.getTemplateByUuid("1"));
+        assertNotNull(getDocumentTemplateFacade().getTemplateByUuid("1"));
 
-        tf.deleteTemplate("1");
+        getDocumentTemplateFacade().deleteTemplate("1");
 
-        assertNull(tf.getTemplateByUuid("1"));
+        assertNull(getDocumentTemplateFacade().getTemplateByUuid("1"));
     }
 }

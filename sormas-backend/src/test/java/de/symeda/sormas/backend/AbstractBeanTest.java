@@ -26,6 +26,8 @@ import java.util.stream.Collectors;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
+import de.symeda.sormas.backend.documentTemplate.DocumentTemplateFacadeEjb;
+import de.symeda.sormas.backend.documentTemplate.DocumentTemplateService;
 import org.junit.Before;
 
 import de.symeda.sormas.api.ConfigFacade;
@@ -410,6 +412,10 @@ public class AbstractBeanTest extends BaseBeanTest {
 	public CampaignFormMetaFacade getCampaignFormFacade() {
 		return getBean(CampaignFormMetaFacadeEjbLocal.class);
 	}
+
+	public DocumentTemplateService getDocumentTemplateService() { return getBean(DocumentTemplateService.class); }
+
+	public DocumentTemplateFacadeEjb getDocumentTemplateFacade() { return getBean(DocumentTemplateFacadeEjb.class); }
 
 	protected UserDto useSurveillanceOfficerLogin(TestDataCreator.RDCF rdcf) {
 		if (rdcf == null) {
