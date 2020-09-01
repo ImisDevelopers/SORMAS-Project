@@ -18,15 +18,15 @@ import de.symeda.sormas.backend.AbstractBeanTest;
 public class DocumentTemplateFacadeEjbTest extends AbstractBeanTest {
 
     @Test
-    public void testTemplateCreation() throws Exception{
+    public void testTemplateCreation() {
         DocumentTemplateFacadeEjb tf = new DocumentTemplateFacadeEjb();
         DocumentTemplate template = new DocumentTemplate();
         template.setWorkflow("testing1");
-        Document doc = new XWPFDocument();
+        XWPFDocument doc = new XWPFDocument();
         template.setDocument(doc);
 
         template.setUuid("1");
-        template.setId(1);
+        template.setId(1L);
         Timestamp ts = new Timestamp(50000000);
         template.setCreationDate(ts);
         template.setChangeDate(ts);
