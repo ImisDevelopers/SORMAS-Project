@@ -18,7 +18,7 @@ public class DocumentTemplateFacadeEjb {
 
     public void deleteTemplate(String uuid) {
         List<DocumentTemplate> tList = templateService.getTemplateByUuid(uuid);
-        Template toDelete = tList.get(0);
+        DocumentTemplate toDelete = tList.get(0);
         templateService.delete(toDelete);
     }
 

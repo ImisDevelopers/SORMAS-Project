@@ -22,7 +22,6 @@ public class DocumentTemplateFacadeEjbTest extends AbstractBeanTest {
         DocumentTemplateFacadeEjb tf = new DocumentTemplateFacadeEjb();
         DocumentTemplate template = new DocumentTemplate();
         template.setWorkflow("testing1");
-
         Document doc = new XWPFDocument();
         template.setDocument(doc);
 

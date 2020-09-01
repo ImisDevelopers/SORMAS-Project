@@ -14,7 +14,7 @@ import de.symeda.sormas.backend.common.AbstractAdoService;
 
 @Stateless
 @LocalBean
-public class DocumentTemplateService extends AbstractAdoService<Template> {
+public class DocumentTemplateService extends AbstractAdoService<DocumentTemplate> {
 
     public DocumentTemplateService() {
         super(DocumentTemplate.class);
