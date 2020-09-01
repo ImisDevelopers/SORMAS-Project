@@ -65,6 +65,11 @@
 			<artifactId>slf4j-api</artifactId>
 		</dependency>
 
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml</artifactId>
+		</dependency>
+
 		<!-- Testing -->
 
 		<dependency>
@@ -127,7 +132,7 @@
 			<artifactId>postgresql</artifactId>
 		</dependency>
 
-    </dependencies>
+	</dependencies>
 
 	<build>
 	</build>
