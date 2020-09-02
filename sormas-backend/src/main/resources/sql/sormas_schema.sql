@@ -5023,7 +5023,7 @@ INSERT INTO schema_version (version_number, comment) VALUES (243, 'Campaign diag
 
 
 -- 2020-08-14 table for templates
-CREATE TABLE doctemplates(
+CREATE TABLE documenttemplate(
                 id bigint not null,
                 uuid varchar(36) not null unique,
                 changedate timestamp not null,
@@ -5033,6 +5033,6 @@ CREATE TABLE doctemplates(
                 document BYTEA
 );
 
-ALTER TABLE doctemplates OWNER TO sormas_user;
+ALTER TABLE documenttemplate OWNER TO sormas_user;
 
 -- *** Insert new sql commands BEFORE this line ***
