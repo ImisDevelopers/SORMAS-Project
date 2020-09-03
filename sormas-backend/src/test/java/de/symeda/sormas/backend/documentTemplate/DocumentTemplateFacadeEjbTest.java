@@ -1,16 +1,14 @@
 package de.symeda.sormas.backend.documentTemplate;
 
+import de.symeda.sormas.api.documentTemplate.DocumentTemplateDto;
+import de.symeda.sormas.backend.AbstractBeanTest;
+import org.apache.poi.xwpf.usermodel.XWPFDocument;
+import org.junit.Test;
+
 import java.io.IOException;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
-
-import de.symeda.sormas.api.documentTemplate.DocumentTemplateDto;
-import org.apache.poi.xwpf.usermodel.XWPFDocument;
-
-import org.junit.Test;
-
-import de.symeda.sormas.backend.AbstractBeanTest;
 
 public class DocumentTemplateFacadeEjbTest extends AbstractBeanTest {
 
@@ -20,8 +18,7 @@ public class DocumentTemplateFacadeEjbTest extends AbstractBeanTest {
         XWPFDocument doc = new XWPFDocument();
         temp.writeXWPFDocument(doc);
 
-        DocumentTemplateDto template = new DocumentTemplateDto();
-        template.build("testing1", "Test/test", temp.getDocument());
+        DocumentTemplateDto template = DocumentTemplateDto.build("testing1", "Test/test", temp.getDocument());
         String uID = template.getUuid();
 
         getDocumentTemplateFacade().saveTemplate(template);

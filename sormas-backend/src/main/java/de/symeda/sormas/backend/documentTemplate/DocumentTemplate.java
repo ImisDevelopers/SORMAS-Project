@@ -1,12 +1,9 @@
 package de.symeda.sormas.backend.documentTemplate;
 
-import javax.persistence.Entity;
-
+import de.symeda.sormas.backend.common.AbstractDomainObject;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 
-import de.symeda.sormas.backend.common.AbstractDomainObject;
-import org.hibernate.annotations.Type;
-
+import javax.persistence.Entity;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -23,7 +20,6 @@ public class DocumentTemplate extends AbstractDomainObject {
     private String filename;
     private byte[] document;
 
-    @Type(type="org.hibernate.type.PrimitiveByteArrayBlobType")
     public byte[] getDocument() {
         return document;
     }
