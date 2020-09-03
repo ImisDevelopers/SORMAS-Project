@@ -1,12 +1,11 @@
 package de.symeda.sormas.backend.documentTemplate;
 
 import java.io.IOException;
-import java.sql.Timestamp;
 
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertNull;
 
-import de.symeda.sormas.api.utils.DataHelper;
+import de.symeda.sormas.api.documentTemplate.DocumentTemplateDto;
 import org.apache.poi.xwpf.usermodel.XWPFDocument;
 
 import org.junit.Test;
@@ -17,22 +16,20 @@ public class DocumentTemplateFacadeEjbTest extends AbstractBeanTest {
 
     @Test
     public void testTemplateCreation() throws IOException {
-        DocumentTemplate template = new DocumentTemplate();
-        template.setWorkflow("testing1");
+        DocumentTemplate temp = new DocumentTemplate();
         XWPFDocument doc = new XWPFDocument();
-        template.writeXWPFDocument(doc);
+        temp.writeXWPFDocument(doc);
 
-        String uuid = DataHelper.createUuid();
-        template.setUuid(uuid);
-        Timestamp ts = new Timestamp(50000000);
-        template.setCreationDate(ts);
-        template.setChangeDate(ts);
+        DocumentTemplateDto template = new DocumentTemplateDto();
+        template.build("testing1", "Test/test", temp.getDocument());
+        String uID = template.getUuid();
+
         getDocumentTemplateFacade().saveTemplate(template);
 
-        assertNotNull(getDocumentTemplateFacade().getTemplateByUuid(uuid));
+        assertNotNull(getDocumentTemplateFacade().getTemplateByUuid(uID));
 
-        getDocumentTemplateFacade().deleteTemplate(uuid);
+        getDocumentTemplateFacade().deleteTemplate(uID);
 
-        assertNull(getDocumentTemplateFacade().getTemplateByUuid(uuid));
+        assertNull(getDocumentTemplateFacade().getTemplateByUuid(uID));
     }
 }

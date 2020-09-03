@@ -66,7 +66,11 @@
 			<groupId>com.github.mpkorstanje</groupId>
 			<artifactId>simmetrics-core</artifactId>
 		</dependency>
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi-ooxml</artifactId>
+        </dependency>
 
-	</dependencies>
+    </dependencies>
 
 </project>
