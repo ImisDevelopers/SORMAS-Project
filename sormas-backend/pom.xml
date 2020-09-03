@@ -70,6 +70,19 @@
 			<artifactId>poi-ooxml</artifactId>
 		</dependency>
 
+		<dependency>
+			<groupId>fr.opensagres.xdocreport</groupId>
+			<artifactId>xdocreport</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>fr.opensagres.xdocreport</groupId>
+			<artifactId>fr.opensagres.xdocreport.template.velocity</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.freemarker</groupId>
+			<artifactId>freemarker</artifactId>
+		</dependency>
+
 		<!-- Testing -->
 
 		<dependency>
