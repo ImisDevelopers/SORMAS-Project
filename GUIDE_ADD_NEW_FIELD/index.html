@@ -1,0 +1,648 @@
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.5.12">
+    
+    
+      
+        <title>How to add a new field? - SORMAS</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.4dd2dd8d.min.css">
+      
+      
+    
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#how-to-add-a-new-field" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href=".." title="SORMAS" class="md-header-nav__button md-logo" aria-label="SORMAS">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      
+        <div class="md-header-nav__ellipsis">
+          <span class="md-header-nav__topic md-ellipsis">
+            SORMAS
+          </span>
+          <span class="md-header-nav__topic md-ellipsis">
+            
+              How to add a new field?
+            
+          </span>
+        </div>
+      
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active">
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header-nav__source">
+        
+<a href="https://github.com/hzi-braunschweig/SORMAS-Project/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    hzi-braunschweig/SORMAS-Project
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+        
+      
+      
+        
+          
+
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-tabs__inner md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../DEVELOPMENT_ENVIRONMENT/" class="md-tabs__link">
+          For Developers
+        </a>
+      
+    </li>
+  
+
+      
+        
+  
+  
+    <li class="md-tabs__item">
+      
+        <a href="../SERVER_CUSTOMIZATION/" class="md-tabs__link">
+          For Admins
+        </a>
+      
+    </li>
+  
+
+      
+        
+  <li class="md-tabs__item">
+    <a href="https://sormas.org" class="md-tabs__link">
+      Offical Website
+    </a>
+  </li>
+
+      
+    </ul>
+  </div>
+</nav>
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="SORMAS" class="md-nav__button md-logo" aria-label="SORMAS">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 003-3 3 3 0 00-3-3 3 3 0 00-3 3 3 3 0 003 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54z"/></svg>
+
+    </a>
+    SORMAS
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/hzi-braunschweig/SORMAS-Project/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    hzi-braunschweig/SORMAS-Project
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-1" type="checkbox" id="nav-1">
+    
+    <label class="md-nav__link" for="nav-1">
+      For Developers
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="For Developers" data-md-level="1">
+      <label class="md-nav__title" for="nav-1">
+        <span class="md-nav__icon md-icon"></span>
+        For Developers
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../DEVELOPMENT_ENVIRONMENT/" title="Automated Setup" class="md-nav__link">
+      Automated Setup
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../SERVER_SETUP/" title="Manual Setup" class="md-nav__link">
+      Manual Setup
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../ADDING_LICENSE/" title="License" class="md-nav__link">
+      License
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2">
+    
+    <label class="md-nav__link" for="nav-2">
+      For Admins
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="For Admins" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon"></span>
+        For Admins
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../SERVER_CUSTOMIZATION/" title="Customizing a SORMAS Server" class="md-nav__link">
+      Customizing a SORMAS Server
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../SERVER_UPDATE/" title="Updating a SORMAS Server" class="md-nav__link">
+      Updating a SORMAS Server
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../SOP_DISEASES/" title="SOP for Adding New Diseases to SORMAS" class="md-nav__link">
+      SOP for Adding New Diseases to SORMAS
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="https://sormas.org" title="Offical Website" class="md-nav__link">
+      Offical Website
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#example-use-cases" class="md-nav__link">
+    Example use cases
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#0-preparation" class="md-nav__link">
+    0. Preparation (!)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#i-adding-the-field-to-the-sormas-api" class="md-nav__link">
+    I. Adding the field to the SORMAS API
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ii-adding-the-field-to-the-sormas-backend" class="md-nav__link">
+    II. Adding the field to the SORMAS backend
+  </a>
+  
+    <nav class="md-nav" aria-label="II. Adding the field to the SORMAS backend">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#iii-adding-the-field-to-the-sormas-ui" class="md-nav__link">
+    III. Adding the field to the SORMAS UI
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#iv-adding-the-field-to-the-sormas-android-app" class="md-nav__link">
+    IV. Adding the field to the SORMAS Android app
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/hzi-braunschweig/SORMAS-Project/edit/master/docs/GUIDE_ADD_NEW_FIELD.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                  
+                
+                
+                <h1 id="how-to-add-a-new-field">How to add a new field?</h1>
+<p>This guide explains how to add a new plain field to the SORMAS data schema.
+It does <strong>not</strong> explain how to add list fields, new sections or concepts to SORMAS.</p>
+<p><strong>Important:</strong> This is the first version of this guide. Please get in contact if anything is not clear or you have suggestions on how to improve the guide, the source code or the underlying architecture.</p>
+<h3 id="example-use-cases">Example use cases</h3>
+<ul>
+<li>A symptom is needed for a specific disease (e.g. headache)</li>
+<li>A field with additional epidemiological details on a case (e.g. contact with a special type of animal)</li>
+</ul>
+<h2 id="0-preparation">0. Preparation (!)</h2>
+<ol>
+<li>Make sure the field is not already in the system. 
+   SORMAS has a lot of data fields and many of them are only used for a few diseases and hidden for other ones. 
+   The best way to make sure is to open the data dictionary and go through the existing fields of all related data sections: https://github.com/hzi-braunschweig/SORMAS-Project/blob/development/sormas-api/src/main/resources/doc/SORMAS_Data_Dictionary.xlsx</li>
+<li>Clearly define the field:</li>
+<li>Name and description</li>
+<li>Field type: plain text, pre-defined values (enum), date, time, number</li>
+<li>Example values</li>
+<li>Who is supposed to enter the field?</li>
+<li>Who is supposed to read the field?</li>
+<li><a href="../DEVELOPMENT_ENVIRONMENT/">Set up your local development environment</a></li>
+</ol>
+<h2 id="i-adding-the-field-to-the-sormas-api">I. Adding the field to the SORMAS API</h2>
+<p>The SORMAS API is the heart of the data schema. Accordingly, this is where you have to get started.</p>
+<ol>
+<li>Identify the class where the field needs to be added. For most scenarios you will only need to have a look at CaseDataDto.java and all the fields used in there, e.g. SymptomsDto.</li>
+<li>Add the field as a private member of the class with a get- and set-method. In addition a static final String to be used as a constant to identify the field.</li>
+<li>If the field has pre-defined values add a enum in the package of the class. Have a look at one of the existing enums for reference.</li>
+<li>Add the caption to captions.properties and description to description.properties in the project resources. For enums add all values to enum.properties.
+   <code>Symptoms.soreThroat = Sore throat/pharyngitis</code></li>
+<li>When you made additions/changes on keys in <code>captions.properties</code>, <code>strings.properties</code> or <code>validations.properties</code> you have to run <code>I18nConstantGenerator</code> (run as ... Java Application) to update the corresponding Constants classes.</li>
+<li><em>Very important</em>: We have now officially made a change to the API which likely means that old versions are no longer fully compatible.
+   When data with the new field is sent to a mobile device with an old version, it will not know about the field and the data is lost on the device.
+   When the data is send back to the server the empty field may override any existing data and it's now also lost on the server itself.
+   To avoid this the following has to be done:</li>
+<li>Open the InfoProvider.getMinimumRequiredVersion method.</li>
+<li>Set the version to the current development version (without the -SNAPSHOT). You can find the current version in the maven pom.xml configuration file.</li>
+</ol>
+<h2 id="ii-adding-the-field-to-the-sormas-backend">II. Adding the field to the SORMAS backend</h2>
+<p>The SORMAS backend is responsible for persisting all data into the servers database and to make this data accessible.
+Accordingly it's necessary to extend the persistence logic with the new field.</p>
+<ol>
+<li>Identify the entity class that matches the API class where the field was added (e.g. Case.java).</li>
+<li>Add the field as a private member of the entity class with a get- and set-method.</li>
+<li>Add the correct JPA annotation to the get-method (see other fields for examples).
+   <code>@Enumerated(EnumType.STRING)
+    public SymptomState getSoreThroat() {
+        return soreThroat;
+    }</code></li>
+</ol>
+<p>In addition to this the sormas_schema.sql file in sormas-base/sql has to be extended:</p>
+<ol>
+<li>Scroll to the bottom and add a new schema_version block. 
+   It starts with a comment that contains the date and a short info on the changes and the github issue id and ends with and "INSERT INTO schema_version..." where the version has to be incremented.
+   ```
+   -- 2019-02-20 Additional signs and symptoms #938</li>
+</ol>
+<p>INSERT INTO schema_version (version_number, comment) VALUES (131, 'Additional signs and symptoms #938');
+   <code>5. Within this block add a new column to the table that matches the entity where the new field was added in sormas-backend.
+   You can scroll up to see examples of this for all the different field types. Note that the column name is all lower case.</code>
+   ALTER TABLE symptoms ADD COLUMN sorethroat varchar(255);
+   ```
+6. Make sure to also add the column to the corresponding history table in the database.
+7. Update default values if needed.
+8. Try to execute the SQL on your system!</p>
+<p>Now we need to make sure data in the new field is exchanged between the backend entity classes and the API data transfer objects.</p>
+<ol>
+<li>Identify the *FacadeEjb class for the entity (e.g. CaseFacadeEjb).</li>
+<li>
+<p>Extend the toDto and fromDto/fillOrBuildEntity methods to exchange data between the API class and the backend entity class that is persisted.
+    <code>target.setSoreThroat(source.getSoreThroat());</code>
+Now we need to make sure data in the new field is exported by the detailed export.</p>
+</li>
+<li>
+<p>Identify corresponding *ExportDto (e.g. CaseExportDto)</p>
+</li>
+<li>Add the field as a private member of the dto class with a get- and set-method.</li>
+<li>Add the @Order annotation on the getter method of the new field
+    <code>@Order(33)
+    public SymptomState getSoreThroat() {
+        return soreThroat;
+    }</code>
+    &gt; <strong>NOTE</strong>: The @Order numbers should be unique so please increase the order of the getters below if there are any.</li>
+<li>Initialize the new field in the constructor</li>
+<li>Add the new field in the selection list in the <code>getExportList</code> method of the <em>FacadeEJB
+    <code>cq.multiselect(
+        ...,
+        caseRoot.get(Case.SORE_THROAT),
+        ...
+    )</code> 
+    &gt; </em><em>NOTE</em><em>: Make sure the order of the fields in the selection list corresponds the order of arguments in the constructor of </em>ExportDto class  </li>
+</ol>
+<h3 id="iii-adding-the-field-to-the-sormas-ui">III. Adding the field to the SORMAS UI</h3>
+<p>The SORMAS UI is the web application that is used by supervisors, laboratory users, national instances and others.
+Here we have to extend the form where the field is supposed to be shown and edited. Note that the web application uses the same form for read and write mode, so the field only needs to be added once.</p>
+<ol>
+<li>Identify the Form class where the new field is supposed to be shown. Examples of this are SymptomsForm.class, CaseDataForm.class or EpiDataForm.class.</li>
+<li>Add the new field to the HTML layout definition in the top of the form class. The forms use column layouts based on the bootstrap CSS library.
+   <code>LayoutUtil.fluidRowLocs(SymptomsDto.TEMPERATURE, SymptomsDto.TEMPERATURE_SOURCE) +</code></li>
+<li>Go to the addFields method of the form and add the field. 
+   You can add it without defining a UI field type - this will use a default UI field type based on the type of the data field (see SormasFieldGroupFieldFactory):
+   <code>addFields(EpiDataDto.WATER_BODY, EpiDataDto.WATER_BODY_DETAILS, EpiDataDto.WATER_SOURCE);</code>
+   Or you can define the type of UI field that should be used and provide additional initialization for the field:
+   <code>ComboBox region = addField(CaseDataDto.REGION, ComboBox.class);
+   region.addItems(FacadeProvider.getRegionFacade().getAllAsReference());</code>   </li>
+<li>The FieldHelper class provides methods to conditionally make the field visible, required or read-only, based on the values of other fields.</li>
+<li>Finally have a try in the web application to check if everything is working as expected.</li>
+</ol>
+<h3 id="iv-adding-the-field-to-the-sormas-android-app">IV. Adding the field to the SORMAS Android app</h3>
+<p>The SORMAS Android app synchronizes with the server using the SORMAS ReST interface. The app does have it's own database to persist all data of the user for offline usage. Thus it's necessary to extend the entity classes used by the app.</p>
+<ol>
+<li>Identify the entity class in the sormas-app backend sub-package.</li>
+<li>Add the field as a private member of the entity class with a get- and set-method.</li>
+<li>Add the correct JPA or ORM-lite annotation to the private member (see other fields for examples).
+   Note: In the future this may be replaced by using Android Room.</li>
+<li>Identify the *DtoHelper class for the entity (e.g. CaseDtoHelper).</li>
+<li>Extend the fillInnerFromAdo and fillInnerFromDto methods to exchange data between the API class and the app entity class that is persisted.</li>
+</ol>
+<p>SORMAS allows users to upgrade from old app versions. Thus it's necessary to add the needed SQL to the onUpgrade method in the DatabaseHelper class.</p>
+<ol>
+<li>Increment the DATABASE_VERSION variable in the DatabaseHelper class.</li>
+<li>Go to the end of the onUpgrade method and add a new case block that defines how to upgrade to the new version.</li>
+<li>Execute the needed SQL using the DAO (database access object) of the entity class. 
+   You can mostly use the same SQL used for adding the field to the SORMAS backend. The column name has to match the field name in the entity class (not all lower case).
+   <code>getDao(Symptoms.class).executeRaw("ALTER TABLE symptoms ADD COLUMN soreThroat varchar(255);");</code>   </li>
+</ol>
+<p>The SORMAS app has separate fragments used for read and edit activities. Each fragment is split into the xml layout file and the java class containing it's logic.</p>
+<ol>
+<li>Identify the edit fragment layout xml file where the field needs to be added. E.g. /res/layout/fragment_symptoms_edit_layout.xml</li>
+<li>Add the field to the layout. See the existing fields for reference. Our custom Android components automatically add captions and descriptions to the field.
+    <code>&lt;de.symeda.sormas.app.component.controls.ControlSwitchField
+        android:id="@+id/symptoms_soreThroat"
+        app:enumClass="@{symptomStateClass}"
+        app:slim="true"
+        app:value="@={data.soreThroat}"
+        style="@style/ControlSingleColumnStyle" /&gt;</code>
+    Note that this comes with automatic data-binding. Use "@={...}" for edit fields and "@{...}" for read fields.</li>
+<li>Identify the edit fragment java class. E.g. SymptomsEditFragment.java</li>
+<li>Add needed field initializations to the existing onAfterLayoutBinding method. If necessary you can prepare any data in the prepareFragmentData method, while the fragment is still loading.
+   Since there are many use cases please have a look at the existing classes.</li>
+<li>Do the same for the read fragment and possibly also create fragment.</li>
+<li>Finally have a try in the app to check if everything is working as expected. Make sure data entered on the Android device is properly synchronized and also appears on the server.</li>
+</ol>
+<p>Now you are done :-)</p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+  <div class="md-footer-social">
+    
+      
+      
+        
+        
+      
+      <a href="https://github.com/hzi-braunschweig/SORMAS-Project" target="_blank" rel="noopener" title="github.com" class="md-footer-social__link">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 512"><path d="M186.1 328.7c0 20.9-10.9 55.1-36.7 55.1s-36.7-34.2-36.7-55.1 10.9-55.1 36.7-55.1 36.7 34.2 36.7 55.1zM480 278.2c0 31.9-3.2 65.7-17.5 95-37.9 76.6-142.1 74.8-216.7 74.8-75.8 0-186.2 2.7-225.6-74.8-14.6-29-20.2-63.1-20.2-95 0-41.9 13.9-81.5 41.5-113.6-5.2-15.8-7.7-32.4-7.7-48.8 0-21.5 4.9-32.3 14.6-51.8 45.3 0 74.3 9 108.8 36 29-6.9 58.8-10 88.7-10 27 0 54.2 2.9 80.4 9.2 34-26.7 63-35.2 107.8-35.2 9.8 19.5 14.6 30.3 14.6 51.8 0 16.4-2.6 32.7-7.7 48.2 27.5 32.4 39 72.3 39 114.2zm-64.3 50.5c0-43.9-26.7-82.6-73.5-82.6-18.9 0-37 3.4-56 6-14.9 2.3-29.8 3.2-45.1 3.2-15.2 0-30.1-.9-45.1-3.2-18.7-2.6-37-6-56-6-46.8 0-73.5 38.7-73.5 82.6 0 87.8 80.4 101.3 150.4 101.3h48.2c70.3 0 150.6-13.4 150.6-101.3zm-82.6-55.1c-25.8 0-36.7 34.2-36.7 55.1s10.9 55.1 36.7 55.1 36.7-34.2 36.7-55.1-10.9-55.1-36.7-55.1z"/></svg>
+      </a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/vendor.3636a4ec.min.js"></script>
+      <script src="../assets/javascripts/bundle.e9fe3281.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      
+      <script>
+        app = initialize({
+          base: "..",
+          features: ["tabs"],
+          search: Object.assign({
+            worker: "../assets/javascripts/worker/search.5eca75d3.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>
