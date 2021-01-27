@@ -3,10 +3,6 @@ package de.symeda.sormas.api;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.fail;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Date;
@@ -14,7 +10,6 @@ import java.util.Date;
 import org.junit.Before;
 import org.junit.Test;
 
-import de.symeda.sormas.api.EntityDtoAccessHelper.CachedReferenceDtoResolver;
 import de.symeda.sormas.api.EntityDtoAccessHelper.IReferenceDtoResolver;
 import de.symeda.sormas.api.caze.CaseDataDto;
 import de.symeda.sormas.api.hospitalization.HospitalizationDto;
@@ -118,17 +113,18 @@ public class EntityDtoAccessHelperTest {
 		assertEquals("+49 681 1234", EntityDtoAccessHelper.getPropertyPathValue(caseDataDto, "person.phone", referenceDtoResolver));
 	}
 
-	@Test
-	public void readCachedReferencedEntityDto() {
-		IReferenceDtoResolver mockResolver = mock(IReferenceDtoResolver.class);
-		CachedReferenceDtoResolver cachedReferenceDtoResolver = new CachedReferenceDtoResolver(mockResolver);
-		caseDataDto.setPerson(personReferenceDto);
-		when(mockResolver.resolve(personReferenceDto)).thenReturn(personDto);
-		assertEquals("Tenzing", EntityDtoAccessHelper.getPropertyPathValue(caseDataDto, "person.firstName", cachedReferenceDtoResolver));
-		assertEquals("Tenzing", EntityDtoAccessHelper.getPropertyPathValue(caseDataDto, "person.firstName", cachedReferenceDtoResolver));
-		verify(mockResolver, times(1)).resolve(personReferenceDto);
-	}
-
+	/*
+	 * @Test
+	 * public void readCachedReferencedEntityDto() {
+	 * IReferenceDtoResolver mockResolver = mock(IReferenceDtoResolver.class);
+	 * CachedReferenceDtoResolver cachedReferenceDtoResolver = new CachedReferenceDtoResolver(mockResolver);
+	 * caseDataDto.setPerson(personReferenceDto);
+	 * when(mockResolver.resolve(personReferenceDto)).thenReturn(personDto);
+	 * assertEquals("Tenzing", EntityDtoAccessHelper.getPropertyPathValue(caseDataDto, "person.firstName", cachedReferenceDtoResolver));
+	 * assertEquals("Tenzing", EntityDtoAccessHelper.getPropertyPathValue(caseDataDto, "person.firstName", cachedReferenceDtoResolver));
+	 * verify(mockResolver, times(1)).resolve(personReferenceDto);
+	 * }
+	 */
 	@Test
 	public void readPropertyValuesString() {
 		caseDataDto.setPerson(personReferenceDto);
